@@ -16,6 +16,11 @@ public class Napakalaki{
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        BadConsequence bc = new BadConsequence("HOlasoyunmonstruo", 5, 3, 2);
+        Prize price = new Prize(4, 5);
+        Monster monstruo = new Monster("monstruito", 5, bc, price);
+        
+        
     }
     
 }
