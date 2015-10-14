@@ -11,9 +11,24 @@ package napakalaki;
  */
 public enum TreasureKind {
 
-    ARMOR,
-    ONEHAND,
-    BOTHHANDS,
-    HELMET,
-    SHOES;
+    ARMOR, ONEHAND, BOTHHANDS, HELMET, SHOES;
+    @Override
+    public String toString(){
+    String solucion = "";
+    switch (this) {
+        case ARMOR : solucion = "ARMOR";
+                break;
+        case ONEHAND : solucion = "ONEHAND";
+                break;
+        case BOTHHANDS : solucion = "BOTHHANDS";
+                break;
+        case HELMET : solucion = "HELMET";
+                break;
+        case SHOES : solucion = "SHOES";
+                break;
+    }
+    return solucion;
+    
+    }
+
 }

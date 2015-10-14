@@ -60,11 +60,27 @@ ArrayList<TreasureKind> tHidden){
         this.specificVisibleTreasures = tVisible;
         this.specificHiddenTreasures = tHidden;
         
-}
+    }
+    
+    private String auxiliarString(ArrayList<TreasureKind> datos){ //Para recorrer los vectores
+
+        String solucion="" ;
+
+        for (TreasureKind uno: datos){
+
+            solucion += uno.toString() + "\t";
+        }
+        return solucion;
+
+    }
+    
     public String toString(){
         return "Texto = " + text + " niveles que se pierden = " + Integer.toString(levels) 
                 + "Tesoros visibles que se pierden =" + Integer.toString(nVisiblesTreasures) 
-                + "Tesoros ocultos que se pierden =" + Integer.toString(nHiddenTreasures);
+                + "Tesoros ocultos que se pierden =" + Integer.toString(nHiddenTreasures)  
+                + "Tesoros ocultos específicos =" + auxiliarString(specificHiddenTreasures)
+                + "Tesoros visibles específicos =" + auxiliarString(specificVisibleTreasures)
+                ;
     }
     
     
