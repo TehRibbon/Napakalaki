@@ -10,8 +10,8 @@ package napakalaki;
  * @author mario-cabesa
  */
 public class Prize {
-    private int treasures;
-    private int level;
+    private int treasures;//Tesoros que se obtienen como premio
+    private int level;//Niveles que se obtienen como premio
     
     public Prize(int treasures, int level){
         this.treasures = treasures;

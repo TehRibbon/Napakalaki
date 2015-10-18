@@ -7,7 +7,6 @@ package napakalaki;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import static sun.org.mozilla.javascript.TopLevel.Builtins.Array;
 
 /**
  *
@@ -16,9 +15,9 @@ import static sun.org.mozilla.javascript.TopLevel.Builtins.Array;
 public class PruebaNapakalaki {
     public static void main(String[] args) {
         // TODO code application logic here
-        BadConsequence bc = new BadConsequence("HOlasoyunmonstruo", 5, 3, 2);
+       /** BadConsequence bc = new BadConsequence("HOlasoyunmonstruo", 5, 3, 2);
         Prize price = new Prize(4, 5);
-        Monster monstruo = new Monster("monstruito", 5, bc, price);
+        Monster monstruo = new Monster("monstruito", 5, bc, price);**/
         
         ArrayList<Monster> monstruos = new ArrayList();
         //Byakhees de bonanza
@@ -98,6 +97,53 @@ public class PruebaNapakalaki {
         Prize prize19 = new Prize(1,1);
         monstruos.add(new Monster("BIcéfalo",20, badConsequence19, prize19));
     
-        }  
+        
+        //COMPROBACIONES
+        
+        System.out.print("Tienen un nivel superior a 10: \n");
+        
+        for (Monster iterador: monstruos){
+            if(iterador.getCombatLevel() < 10)
+                System.out.print(iterador.toString());
+            System.out.print("\n");
+            
+        }
+        
+        System.out.print("Tienen un mal rollo que implica sólo pérdida de niveles: \n");
+        
+        for(Monster iterador: monstruos){
+            if(iterador.getBadConsequence().getLevels() > 0)
+                    System.out.print(iterador.toString());
+            System.out.print("\n");
+        }
+        
+        System.out.print("Su buen rollo indica una ganancia de niveles superior  a 1: \n");
+        
+        for(Monster iterador: monstruos){
+            if(iterador.getPrize().getLevel() > 1)
+                System.out.print(iterador.toString());
+            System.out.print("\n");
+        }
     
+        System.out.print("Su mal rollo supone la pérdida de tesoros 'ARMOR', tanto visibles como ocultos");
+        
+        for(Monster iterador: monstruos){
+            ArrayList<TreasureKind> auxVisibles, auxOcultos;
+            auxVisibles = iterador.getBadConsequence().getTesorosEspecificosVisibles();
+            auxOcultos = iterador.getBadConsequence().getTesorosEspecificosOcultos();
+            
+                for(TreasureKind primero: auxVisibles){
+                    if("ARMOR".equals(primero.toString()));
+                    System.out.print(iterador.toString());
+                System.out.print("\n");
+                }
+        
+                for(TreasureKind segundo: auxOcultos){
+                    if("ARMOR".equals(segundo.toString())) 
+                    System.out.print(iterador.toString());
+                System.out.print("\n");
+                    
+                }
+        }
+    }
 }

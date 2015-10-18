@@ -23,6 +23,14 @@ public class Monster {
         return combatLevel;
     }
     
+    public BadConsequence getBadConsequence(){
+        return mal_rollo;
+    }
+    
+    public Prize getPrize(){
+        return premio;
+    }
+    
     public Monster(String name, int level, BadConsequence bc, Prize price){
         this.name = name;
         this.combatLevel = level;

@@ -17,6 +17,8 @@ public class BadConsequence {
     private int nVisiblesTreasures;//nº de tesoros visibles que se pierden
     private int  nHiddenTreasures; //tesoros ocultos que se pierden
     private boolean death; //mal rollo de tipo muerte
+    private ArrayList<TreasureKind> specificHiddenTreasures = new ArrayList();
+    private ArrayList<TreasureKind> specificVisibleTreasures  = new ArrayList(); 
     
     public BadConsequence(String text, int levels, int nVisible, int nHidden){
         //Inicializo todos los parámetros
@@ -50,8 +52,13 @@ public class BadConsequence {
         return nHiddenTreasures;
     }
     
-    private ArrayList<TreasureKind> specificHiddenTreasures = new ArrayList();
-    private ArrayList<TreasureKind> specificVisibleTreasures  = new ArrayList();       
+    public ArrayList<TreasureKind> getTesorosEspecificosOcultos(){
+        return specificHiddenTreasures;
+    }
+    
+    public ArrayList<TreasureKind> getTesorosEspecificosVisibles(){
+        return specificVisibleTreasures;
+    }
 
     public BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible,
 ArrayList<TreasureKind> tHidden){
