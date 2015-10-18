@@ -125,7 +125,7 @@ public class PruebaNapakalaki {
             System.out.print("\n");
         }
     
-        System.out.print("Su mal rollo supone la pérdida de tesoros 'ARMOR', tanto visibles como ocultos");
+        System.out.print("Su mal rollo supone la pérdida de tesoros 'ARMOR', tanto visibles como ocultos: \n");
         
         for(Monster iterador: monstruos){
             ArrayList<TreasureKind> auxVisibles, auxOcultos;
