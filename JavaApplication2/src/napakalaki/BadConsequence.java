@@ -28,6 +28,16 @@ public class BadConsequence {
         this.nHiddenTreasures = nHidden;
     
     }
+    
+     public BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible,
+ArrayList<TreasureKind> tHidden){
+        this.text = text;
+        this.levels = levels;
+        this.specificVisibleTreasures = tVisible;
+        this.specificHiddenTreasures = tHidden;
+        
+    }
+     
     public BadConsequence(String text, boolean death){
         this.text = text;
         this.death = death;
@@ -60,14 +70,7 @@ public class BadConsequence {
         return specificVisibleTreasures;
     }
 
-    public BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible,
-ArrayList<TreasureKind> tHidden){
-        this.text = text;
-        this.levels = levels;
-        this.specificVisibleTreasures = tVisible;
-        this.specificHiddenTreasures = tHidden;
-        
-    }
+   
     
     private String auxiliarString(ArrayList<TreasureKind> datos){ //Para recorrer los vectores
 
