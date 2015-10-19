@@ -39,8 +39,8 @@ public class Monster {
     }
     
     public String toString(){
-        return "Name = " + name + " combat levels = " + Integer.toString(combatLevel)
-                + "Bad Consequence" + mal_rollo.toString()+ "Premio" + premio.toString();
+        return "Nombre = " + name +  "\nNivel de combate = " + Integer.toString(combatLevel)
+                + "\nMal rollo = " + mal_rollo.toString()+ "\nPremio = " + premio.toString() + "\n";
     }
     
 }
