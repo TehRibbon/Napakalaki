@@ -9,6 +9,7 @@ package napakalaki;
  *
  * @author mario
  */
+
 public class Monster {
     private final String name;
     private final int combatLevel;
