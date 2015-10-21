@@ -88,8 +88,8 @@ ArrayList<TreasureKind> tHidden){
         return  text + "\nNiveles que se pierden = " + Integer.toString(levels) 
                 + "\nTesoros visibles que se pierden =" + Integer.toString(nVisiblesTreasures) 
                 + "\nTesoros ocultos que se pierden =" + Integer.toString(nHiddenTreasures)  
-                + "\nTesoros ocultos específicos =" + auxiliarString(specificHiddenTreasures)
-                + "\nTesoros visibles específicos =" + auxiliarString(specificVisibleTreasures)
+                + "\nTesoros ocultos específicos que se pierden =" + auxiliarString(specificHiddenTreasures)
+                + "\nTesoros visibles específicos que se pierden=" + auxiliarString(specificVisibleTreasures)
                 ;
     }
     
