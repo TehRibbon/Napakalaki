@@ -18,6 +18,8 @@ public class PruebaNapakalaki {
     
         
         ArrayList<Monster> monstruos = new ArrayList();
+        
+       
         //Byakhees de bonanza
         BadConsequence badConsequence1 = new BadConsequence( "Pierdes tu armadura visible y otra oculta.", 0, new ArrayList(Arrays.asList(TreasureKind.ARMOR)), new ArrayList(Arrays.asList(TreasureKind.ARMOR)));
         Prize prize1 = new Prize(2,1);
@@ -95,7 +97,20 @@ public class PruebaNapakalaki {
         Prize prize19 = new Prize(1,1);
         monstruos.add(new Monster("BIcéfalo",20, badConsequence19, prize19));
     
+         //EXAMEN-inicio
+        AlterEgo alterego = new AlterEgo(14, monstruos);
+        //se lo asignamos a un monstruo
+        //Monster.setMiAlterEgo(alterego);
         
+        System.out.print("Tienen un alter ego mayor que 10: \n");
+        
+        for (Monster iterador: monstruos){
+            if (iterador.getMiAlterEgo().nivelDeBondad > 10){
+                    System.out.print(iterador.toString());
+                    System.out.print("\n");
+                    }
+        }
+        //EXAMEN-fin
         //COMPROBACIONES
         
         System.out.print("Tienen un nivel superior a 10: \n");
