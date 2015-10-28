@@ -10,5 +10,9 @@ package napakalaki;
  * @author mario-cabesa
  */
 public class CombatResult {
+    public enum CombatResult{WINGAME , WIN, LOOSE}
+    public final boolean WINGAME;
+    public final WIN;
+    public static final LOOSE;
     
 }

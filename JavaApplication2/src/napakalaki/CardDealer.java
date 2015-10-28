@@ -10,5 +10,29 @@ package napakalaki;
  * @author mario-cabesa
  */
 public class CardDealer {
+    private static final CardDealer instance = new CardDealer();
+                
+    private CardDealer(){}
     
+    public static  CardDealer getInstance(){
+        return instance;
+    }
+    
+    private void initTreasureCardDeck(){}
+    
+    private void initMonsterCardDeck(){}
+    
+    private void shuffleTreasures(){}
+    
+    private void shuffleMonster(){}
+    
+    public Treasure nextTreasure(){}
+    
+    public Monster nextMonster(){}
+    
+    public void giveTreasureBack(Treasure t){}
+    
+    public void giveMonsterBack(Monster m){}
+    
+    public void initCards(){}
 }

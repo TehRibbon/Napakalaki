@@ -15,6 +15,7 @@ public class Monster {
     private final int combatLevel;
     private BadConsequence mal_rollo;
     private Prize premio;
+        
     public String getName(){
         return name;
     }
@@ -29,6 +30,10 @@ public class Monster {
     
     public Prize getPrize(){
         return premio;
+    }
+    
+    public int getLevelsGained(){
+        return premio.getLevel();
     }
     
     public Monster(String name, int level, BadConsequence bc, Prize price){
