@@ -15,16 +15,6 @@ public class Monster {
     private final int combatLevel;
     private BadConsequence mal_rollo;
     private Prize premio;
-    //EXAMEN-inicio
-    private AlterEgo miAlterEgo;
-    
-    public AlterEgo getMiAlterEgo(){
-        return miAlterEgo;
-    }
-    public void setMiAlterEgo(AlterEgo unAlterEgo){
-        miAlterEgo = unAlterEgo;
-    }
-    //EXAMEN-fin
     public String getName(){
         return name;
     }
@@ -46,8 +36,7 @@ public class Monster {
         this.combatLevel = level;
         this.mal_rollo=bc;
         this.premio=price;
-        miAlterEgo.nivelDeBondad = 10;
-    }
+            }
     
     public String toString(){
         return "Nombre = " + name +  "\nNivel de combate = " + Integer.toString(combatLevel)
