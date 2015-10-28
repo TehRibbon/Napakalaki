@@ -27,7 +27,14 @@ public class Prize {
     }
     
     public String toString(){
-        return "Tesoros = " + Integer.toString(treasures) + "  Niveles = " + Integer.toString(level);
+        return "Tesoros = " + Integer.toString(getTreasures()) + "  Niveles = " + Integer.toString(level);
+    }
+
+    /**
+     * @param treasures the treasures to set
+     */
+    public void setTreasures(int treasures) {
+        this.treasures = treasures;
     }
  
     
