@@ -88,16 +88,21 @@ public class Player {
     
     }
     
+    /*Devuelve el número de tesoros visibles de tipo tKind que tiene el jugador.*/
     private int howManyVisibleTreasures(TreasureKind tKind){
+        int contador = 0;
+        for(Treasure t : this.VisibleTreasures){
+            if(t.getType() == tKind)
+                contador++;
+        }
+        return contador;
     }
     
     /*Cambia el estado de jugador a muerto, modificando el correspondiente atributo.
       Esto ocurre cuando el jugador, por algún motivo, ha perdido todos sus tesoros.*/
     private void dieIfNoTreasures(){
-        for(Treasure t : this.HiddenTreasures)
-            if
-        for(Treasure t: this.VisibleTreasures)
-        this.dead=true;
+        if(this.HiddenTreasures.isEmpty() && this.VisibleTreasures.isEmpty())
+           this.dead = true;
     }
     
     /*Devuelve true si el jugador está muerto, false en caso contrario.*/
@@ -116,23 +121,54 @@ public class Player {
     
     public void discardVisibleTreasures(Treasure t){}
     
-    public boolean validState(){}
+    /*Devuelve true cuando el jugador no tiene ningún mal rollo que cumplir y no tiene
+      más de 4 tesoros ocultos, y false en caso contrario. Para comprobar que el jugador
+      no tenga mal rollo que cumplir, utiliza el método isEmpty de la clase
+      BadConsequence.*/
+    
+    public boolean validState(){
+        boolean resultado = false;
+        if( (this.pendingBadConsequence.isEmpty() ) && (this.HiddenTreasures.size() <= 4) )
+            resultado = true;
+        return resultado;
+    }
     
     public void initTreasures(){}
     
-    public int getLevels(){}
+    /*Devuelve el nivel del jugador.*/
+    public int getLevels(){
+        return level;
+    }
     
     public Treasure stealTreasure(){}
     
-    public void setEnemy(Player enemy){}
+    /*Asigna valor al atributo que referencia al enemigo del jugador.*/
+    public void setEnemy(Player enemy){
+        this.enemy = enemy;
+    }
     
     private Treasure giveMeATreasure(){}
     
-    public boolean canISteal(){}
+    /*Devuelve true si el jugador no ha robado ningún tesoro a su enemigo y false en
+      caso contrario.*/
+    public boolean canISteal(){
+        return canISteal;
+    }
     
-    private boolean canYouGiveMeATreasure(){}
+    /*Devuelve true si el jugador tiene tesoros para ser robados por otro jugador y false
+      en caso contrario.*/
     
-    private  void haveStolen(){}
+    private boolean canYouGiveMeATreasure(){
+        boolean canYou = false;
+        if(canISteal == true)
+            canYou = true;
+        return canYou;
+    }
+    
+    /*Cambia el atributo canISteal a false cuando el jugador roba un tesoro.*/
+    private  void haveStolen(){
+        canISteal = false;
+    }
     
     public void discardAllTreasures(){}
 }

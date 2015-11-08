@@ -12,18 +12,20 @@ package napakalaki;
 public enum CombatResult {
     
     WINGAME, WIN, LOOSE;
-    
+    @Override
     public String toString(){
+    String solucion = "";
     switch (this){
-        case WINGAME:
-            return "Has ganado el juego.";
-        case WIN:
-            return "Has ganado";
-        case LOOSE:
-            return "Has perdido";
+        case WINGAME : solucion = "Has ganado el juego.";
+            break;
+        case WIN : solucion = "Has ganado.";
+            break;
+        case LOOSE : solucion = "Has perdido";
+            break;
         default: 
             return "Error.";
     }
+    return solucion;
     }
     
 }

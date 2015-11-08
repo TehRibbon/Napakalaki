@@ -17,23 +17,29 @@ public class Monster {
     private Prize premio;
         
     public String getName(){
-        return name;
+        return this.name;
     }
     
     public int getCombatLevel(){
-        return combatLevel;
+        return this.combatLevel;
     }
     
     public BadConsequence getBadConsequence(){
-        return mal_rollo;
+        return this.mal_rollo;
     }
     
     public Prize getPrize(){
-        return premio;
+        return this.premio;
     }
     
+    /*Devuelve el número de niveles ganados proporcionados por su buen rollo.*/
     public int getLevelsGained(){
-        return premio.getLevel();
+        return this.premio.getLevel();
+    }
+    
+    /*Devuelve el número de tesoros ganados proporcionados por su buen rollo.*/
+    public int getTreasuresGained(){
+        return this.premio.getTreasures();
     }
     
     public Monster(String name, int level, BadConsequence bc, Prize price){
@@ -44,8 +50,8 @@ public class Monster {
             }
     
     public String toString(){
-        return "Nombre = " + name +  "\nNivel de combate = " + Integer.toString(combatLevel)
-                + "\nMal rollo = " + mal_rollo.toString()+ "\nPremio = " + premio.toString() + "\n";
+        return "Nombre = " + this.name +  "\nNivel de combate = " + Integer.toString(this.combatLevel)
+                + "\nMal rollo = " + this.mal_rollo.toString()+ "\nPremio = " + this.premio.toString() + "\n";
     }
     
 }

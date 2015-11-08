@@ -12,6 +12,7 @@ import java.util.*;
  * @author mario-cabesa
  */
 public class BadConsequence {
+    static final int MAXTREASURES = 10;
     private String text; //lo que dice el mal rollo
     private  int levels;//niveles que se pierden
     private int nVisiblesTreasures;//nº de tesoros visibles que se pierden
@@ -19,6 +20,7 @@ public class BadConsequence {
     private boolean death; //mal rollo de tipo muerte
     private ArrayList<TreasureKind> specificHiddenTreasures = new ArrayList();
     private ArrayList<TreasureKind> specificVisibleTreasures  = new ArrayList(); 
+    
     
     public BadConsequence(String text, int levels, int nVisible, int nHidden){
         //Inicializo todos los parámetros
@@ -43,6 +45,10 @@ ArrayList<TreasureKind> tHidden){
         this.death = death;
     }
     
+    public int getMAXTREASURES(){
+        return MAXTREASURES;
+    }
+   
     public String getText(){
         return text;
     }
