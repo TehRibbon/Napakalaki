@@ -9,10 +9,21 @@ package napakalaki;
  *
  * @author mario-cabesa
  */
-public class CombatResult {
-    public enum CombatResult{WINGAME , WIN, LOOSE}
-    public final boolean WINGAME;
-    public final WIN;
-    public static final LOOSE;
+public enum CombatResult {
+    
+    WINGAME, WIN, LOOSE;
+    
+    public String toString(){
+    switch (this){
+        case WINGAME:
+            return "Has ganado el juego.";
+        case WIN:
+            return "Has ganado";
+        case LOOSE:
+            return "Has perdido";
+        default: 
+            return "Error.";
+    }
+    }
     
 }

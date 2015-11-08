@@ -5,16 +5,29 @@
  */
 package napakalaki;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mario-cabesa
  */
 public class CardDealer {
-    private static final CardDealer instance = new CardDealer();
-                
+    //Atributos
+    
+    private static CardDealer instance = null;
+    private ArrayList<Treasure> unusedTreasures;
+    private ArrayList<Treasure> usedTreasures;
+    private ArrayList<Monster> usedMonsters;
+    private ArrayList<Monster> unusedMonsters;
+    
+    //Constructor
     private CardDealer(){}
     
-    public static  CardDealer getInstance(){
+    //Patrón enumeration
+    public static CardDealer getInstance(){
+        if (instance == null){
+            instance = new CardDealer();
+        }
         return instance;
     }
     

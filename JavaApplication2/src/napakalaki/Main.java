@@ -12,7 +12,7 @@ import java.util.Arrays;
  *
  * @author mario-cabesa
  */
-public class PruebaNapakalaki {
+public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
     
@@ -146,5 +146,13 @@ public class PruebaNapakalaki {
                     
                 }
         }
+    
+        //DIAGRAMA UML
+        
+        
+    
+    
+    
     }
+    
 }

@@ -12,8 +12,12 @@ package napakalaki;
 public class Treasure {
     private String name;
     private int bonus;
+    private TreasureKind tipo;
     
     public Treasure(String n, int bonus, TreasureKind t){
+        name=n;
+        this.bonus = bonus;
+        tipo = t;
         
     }
     
@@ -26,8 +30,10 @@ public class Treasure {
     }
     
     public TreasureKind getType(){
-    
+    //CAMBIAR
+        return tipo; 
     }
     
+      
     
 }

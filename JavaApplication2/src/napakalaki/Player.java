@@ -5,44 +5,79 @@
  */
 package napakalaki;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mario-cabesa
  */
 public class Player {
+    //Atributos
     static final int MAXLEVEL = 10; 
     private String name;
     private int level;
     private boolean dead = true;
     private boolean canISteal = true;
+    private CombatResult resultadoCombate;
+    private ArrayList<Treasure> HiddenTreasures;
+    private ArrayList<Treasure> VisibleTreasures;
+    private BadConsequence pendingBadConsequence;
+    private Player enemy;
     
+    
+    //Constructor
     public Player(String name) {
         this.name = name;
         
     }
     
+    //Métodos
+    
+    /*Devuelve el nombre del jugador.*/
     public String getName(){
         return name;
     }
     
-    private void bringToLife(){//*************************
-    
+    /*Devuelve la vida al jugador, modificando el atributo correspondiente. */
+    private void bringToLife(){
+        this.dead = false;
     }
     
+    /*Devuelve el nivel de combate del jugador, que viene dado por su nivel más los
+      bonus que le proporcionan los tesoros que tenga equipados, según las reglas del
+      juego.*/
     private int getCombatLevel(){
+        int level = this.level;
+        //Recorremos los tesoros para obtener el bonus
+        for(Treasure t : this.HiddenTreasures){
+            level += t.getBonus();
+        }
+        for(Treasure t : this.VisibleTreasures){
+            level += t.getBonus();
+        }
         return level;
     }
+    /*Incrementa el nivel del jugador en i niveles, teniendo en cuenta las reglas del juego.*/
     
     private void incrementLeveles(int i){
-        level += i;
+        this.level += i;
     }
+    
+    /*Decrementa el nivel del jugador en i niveles, teniendo en cuenta las reglas de
+      juego.*/
     
     private void decrementLevels(int i){
-        level -= i;
+        this.level -= i;
+        
+        //El mínimo nivel es 1
+        
+        if(this.level < 1)
+            this.level = 1;
     }
+    /*Asigna el mal rollo al jugador, dándole valor a su atributo pendingBadConsequence.*/
     
-    private void setPendingBadConsequence(BadConsequence b){//******************************
-           
+    private void setPendingBadConsequence(BadConsequence b){
+        this.pendingBadConsequence = b;
     }
     
     private void applyPrize(Monster m){
@@ -56,11 +91,20 @@ public class Player {
     private int howManyVisibleTreasures(TreasureKind tKind){
     }
     
+    /*Cambia el estado de jugador a muerto, modificando el correspondiente atributo.
+      Esto ocurre cuando el jugador, por algún motivo, ha perdido todos sus tesoros.*/
     private void dieIfNoTreasures(){
-    
+        for(Treasure t : this.HiddenTreasures)
+            if
+        for(Treasure t: this.VisibleTreasures)
+        this.dead=true;
     }
     
-    public boolean isDead(){}
+    /*Devuelve true si el jugador está muerto, false en caso contrario.*/
+    
+    public boolean isDead(){
+       return this.dead;
+    }
     
     public Treasure [] getHiddenTreasure(){}
     
