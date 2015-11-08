@@ -15,7 +15,15 @@ public class Monster {
     private final int combatLevel;
     private BadConsequence mal_rollo;
     private Prize premio;
-        
+    
+    /*Constructor*/
+    
+    public Monster(String name, int level, BadConsequence bc, Prize price){
+        this.name = name;
+        this.combatLevel = level;
+        this.mal_rollo=bc;
+        this.premio=price;
+            }
     public String getName(){
         return this.name;
     }
@@ -42,12 +50,7 @@ public class Monster {
         return this.premio.getTreasures();
     }
     
-    public Monster(String name, int level, BadConsequence bc, Prize price){
-        this.name = name;
-        this.combatLevel = level;
-        this.mal_rollo=bc;
-        this.premio=price;
-            }
+    
     
     public String toString(){
         return "Nombre = " + this.name +  "\nNivel de combate = " + Integer.toString(this.combatLevel)
