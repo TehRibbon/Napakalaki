@@ -31,8 +31,7 @@ public class BadConsequence {
     
     }
     
-     public BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible,
-ArrayList<TreasureKind> tHidden){
+     public BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible, ArrayList<TreasureKind> tHidden){
         this.text = text;
         this.levels = levels;
         this.specificVisibleTreasures = tVisible;
@@ -47,6 +46,10 @@ ArrayList<TreasureKind> tHidden){
     
     public int getMAXTREASURES(){
         return MAXTREASURES;
+    }
+    
+    public boolean getDeath(){
+        return death;
     }
    
     public String getText(){
@@ -68,13 +71,32 @@ ArrayList<TreasureKind> tHidden){
         return nHiddenTreasures;
     }
     
-    public ArrayList<TreasureKind> getTesorosEspecificosOcultos(){
-        return specificHiddenTreasures;
+    public boolean isEmpty(){
+        if(nVisiblesTreasures==0 && nHiddenTreasures== 0 && specificVisibleTreasures.isEmpty() && specificHiddenTreasures.isEmpty()) 
+            return true;
+        else
+            return false;
     }
     
-    public ArrayList<TreasureKind> getTesorosEspecificosVisibles(){
+    public ArrayList<TreasureKind> getSpepecificVisibleTreasures(){
         return specificVisibleTreasures;
     }
+    public ArrayList<TreasureKind> getSpecificHiddenTreasures(){
+        return specificHiddenTreasures;
+    }
+    void substractVisibleTreasure(Treasure t){
+        //
+    }
+    
+    void substractHiddenTreasure(Treasure t){
+        //
+    }
+    
+        
+    BadConsequence adjustToFitTreasureList(ArrayList<TreasureKind> visible, ArrayList<TreasureKind> hidden){
+        //
+    }
+    
 
    
     
