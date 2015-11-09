@@ -10,5 +10,23 @@ package napakalaki;
  * @author mario-cabesa
  */
 public class Dice {
+    private static Dice instance = null;
     
+    //Constructor
+    private Dice(){}
+    
+    //Patron de enumeration
+    
+    public static Dice getInstance(){
+        if (instance == null){
+            instance = new Dice();
+        }
+        return instance;
+    }
+    
+    public static int nextNumber(){
+        
+        //Nose como va..
+    
+    }
 }
