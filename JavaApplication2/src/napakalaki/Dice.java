@@ -9,13 +9,14 @@ package napakalaki;
  *
  * @author mario-cabesa
  */
+
 public class Dice {
     private static Dice instance = null;
     
     //Constructor
     private Dice(){}
     
-    //Patron de enumeration
+    //Patron de singleton
     
     public static Dice getInstance(){
         if (instance == null){
@@ -25,8 +26,10 @@ public class Dice {
     }
     
     public static int nextNumber(){
-        
-        //Nose como va..
-    
+        int resultado=0;
+        //Genera un número aleatorio entre 1 y 6 (ambos incluidos).
+        for(int i=0; i<6; i++)
+            resultado = (int)(Math.random()*6)+1;
+        return resultado;
     }
 }
