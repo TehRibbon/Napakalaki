@@ -72,10 +72,11 @@ public class BadConsequence {
     }
     
     public boolean isEmpty(){
-        if(nVisiblesTreasures==0 && nHiddenTreasures== 0 && specificVisibleTreasures.isEmpty() && specificHiddenTreasures.isEmpty()) 
-            return true;
-        else
-            return false;
+        boolean empty = false;
+        if(text == "" && death == false && levels == 0 && nVisiblesTreasures == 0 && nHiddenTreasures == 0 && specificVisibleTreasures == new ArrayList(Arrays.asList()) && specificHiddenTreasures == new ArrayList(Arrays.asList()) )
+            empty = true;
+        
+        return empty;
     }
     
     public ArrayList<TreasureKind> getSpepecificVisibleTreasures(){
