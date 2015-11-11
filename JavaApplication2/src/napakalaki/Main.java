@@ -130,8 +130,8 @@ public class Main {
         
         for(Monster iterador: monstruos){
             ArrayList<TreasureKind> auxVisibles, auxOcultos;
-            auxVisibles = iterador.getBadConsequence().getTesorosEspecificosVisibles();
-            auxOcultos = iterador.getBadConsequence().getTesorosEspecificosOcultos();
+            auxVisibles = iterador.getBadConsequence().getSpecificVisibleTreasures();
+            auxOcultos = iterador.getBadConsequence().getSpecificHiddenTreasures();
             
                 for(TreasureKind primero: auxVisibles){
                     if("ARMOR".equals(primero.toString())){

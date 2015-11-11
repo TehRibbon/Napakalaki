@@ -79,7 +79,7 @@ public class BadConsequence {
         return empty;
     }
     
-    public ArrayList<TreasureKind> getSpepecificVisibleTreasures(){
+    public ArrayList<TreasureKind> getSpecificVisibleTreasures(){
         return specificVisibleTreasures;
     }
     public ArrayList<TreasureKind> getSpecificHiddenTreasures(){
