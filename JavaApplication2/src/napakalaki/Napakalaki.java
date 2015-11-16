@@ -64,38 +64,77 @@ public class Napakalaki{
       jugador actual está en la última posición de la lista, el siguiente será el que está en la
       primera posición.
       Una vez calculado el índice, se devuelve el jugador que ocupa esa posición.*/
+    
     private Player nextPlayer(){
-
-        int aux,total_jugadores, indice_jugadores, indice_jugador_actual;
-        total_jugadores = players.size();//Obtenemos numero de jugadores
-        aux = total_jugadores-1;
         
+        int indice_siguiente;
+        Player nextPlayer;
+        int total_jugadores;
+        total_jugadores = this.players.size();//Obtenemos numero de jugadores
+        
+        //si no está definido el jugador actual significa que es la primera jugada
         if(currentPlayer == null){
             for(int i=0; i<1; i++)
-                indice_jugadores = (int)(Math.random()* aux);
+                indice_siguiente = (int)(Math.random()* total_jugadores);
         }
-        else if(indice_jugador_actual == total_jugadores) //Caso en el que el jugador esta en la última posición de la lista
-                indice_jugadores = players.get(0);
+        else { 
+            
+            int indiceJugadorActual= this.players.indexOf(this.currentPlayer);
+            
+            if ( indiceJugadorActual == total_jugadores - 1){
+            //Si es el ultimo seleccionamos el primero
+                indice_siguiente = 0;
+            } 
+            else {
+                //seleccionamos el siguiente
+                indice_siguiente = indiceJugadorActual + 1;
             }
-            else{
-                indice_jugador_actual++;
-                
-            }
-        return players.get(indice_jugadores);
+            
+        }
+        
+        nextPlayer = this.players.get(indice_siguiente);
+        
+        this.currentPlayer = nextPlayer;
+        
+        
+        return this.currentPlayer;
     
     }
+    
+    /*Método que comprueba si el jugador activo (currentPlayer) cumple con las reglas del juego
+      para poder terminar su turno. Devuelve false si el jugador activo no puede pasar de turno y
+      true en caso contrario, para ello usa el método de Player validState() donde se realizan las
+      comprobaciones pertinentes.*/
     private boolean nextTurnAllowed(){}
-    private void setEnemies(){}
+    
+    /*Se asigna un enemigo a cada jugador. Esta asignación se hace de forma aleatoria teniendo
+      en cuenta que un jugador no puede ser enemigo de sí mismo.*/
+    private void setEnemies(){
+        for(Monster : iterador monstruos)
+        }
+    }
     
     public CombatResult developCombat(){}
     public void discardVisibleTreasures(){}
     public void discardHiddenTreasures(){}
     public void makeTreasuresVisible(){}
     public void initGame(ArrayList<String> players){}
-    public Player getCurrentPlayer(){}
-    public Monster getCurrentMonster(){}
-    public boolean nextTurn(){}
-    public boolean endOfGame(CombatResult result){}
     
-
+    /*Devuelve el jugador actual (currentPlayer).*/
+    public Player getCurrentPlayer(){
+        return currentPlayer;
+    }
+    
+    /*Devuelve el monstruo en juego (currentMonster).*/
+    public Monster getCurrentMonster(){
+        return currentMonster;
+    }
+    public boolean nextTurn(){}
+    
+    /*Devuelve true si el parámetro result es WINGAME (valor del enumerado CombatResult). En
+      caso contrario devuelve false.*/
+    public boolean endOfGame(CombatResult result){
+        return result == CombatResult.WINGAME;
+    
+    }
 }
