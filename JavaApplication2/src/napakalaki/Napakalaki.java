@@ -6,6 +6,7 @@
 package napakalaki; //NAPAKALAKI
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 /**
@@ -110,7 +111,12 @@ public class Napakalaki{
     /*Se asigna un enemigo a cada jugador. Esta asignación se hace de forma aleatoria teniendo
       en cuenta que un jugador no puede ser enemigo de sí mismo.*/
     private void setEnemies(){
-        for(Monster : iterador monstruos)
+        Random rand = new Random(); //creamos instancia de Random
+        int posAleatoria = rand.nextInt(players.size());
+        for(Player iterador: players){
+            while(iterador != iterador.getEnemy()){
+                iterador.setEnemy(players.get(posAleatoria)); 
+            }    
         }
     }
     

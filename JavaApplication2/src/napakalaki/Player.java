@@ -143,6 +143,10 @@ public class Player {
     public Treasure stealTreasure(){}
     
     /*Asigna valor al atributo que referencia al enemigo del jugador.*/
+    public Player getEnemy(){
+        return this.enemy;
+    }
+    
     public void setEnemy(Player enemy){
         this.enemy = enemy;
     }
