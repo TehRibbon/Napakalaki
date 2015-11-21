@@ -68,7 +68,7 @@ public class Napakalaki{
     
     private Player nextPlayer(){
         
-        int indice_siguiente;
+        int indice_siguiente = 0;
         Player nextPlayer;
         int total_jugadores;
         total_jugadores = this.players.size();//Obtenemos numero de jugadores
@@ -78,7 +78,7 @@ public class Napakalaki{
             for(int i=0; i<1; i++)
                 indice_siguiente = (int)(Math.random()* total_jugadores);
         }
-        else { 
+        else{ 
             
             int indiceJugadorActual= this.players.indexOf(this.currentPlayer);
             
