@@ -106,7 +106,9 @@ public class Napakalaki{
       para poder terminar su turno. Devuelve false si el jugador activo no puede pasar de turno y
       true en caso contrario, para ello usa el método de Player validState() donde se realizan las
       comprobaciones pertinentes.*/
-    private boolean nextTurnAllowed(){}
+    private boolean nextTurnAllowed(){
+        return currentPlayer.validState();
+    }
     
     /*Se asigna un enemigo a cada jugador. Esta asignación se hace de forma aleatoria teniendo
       en cuenta que un jugador no puede ser enemigo de sí mismo.*/
@@ -124,7 +126,14 @@ public class Napakalaki{
     public void discardVisibleTreasures(){}
     public void discardHiddenTreasures(){}
     public void makeTreasuresVisible(){}
-    public void initGame(ArrayList<String> players){}
+    
+    /*Se encarga de solicitar a CardDealer la inicialización de los mazos de cartas de Tesoros y
+    de Monstruos, de inicializar los jugadores proporcionándoles un nombre, asignarle a cada
+    jugador su enemigo y de iniciar el juego con la llamada a nextTurn() para pasar al siguiente
+    turno (que en este caso será el primero).*/
+    public void initGame(ArrayList<String> players){
+    
+    }
     
     /*Devuelve el jugador actual (currentPlayer).*/
     public Player getCurrentPlayer(){
