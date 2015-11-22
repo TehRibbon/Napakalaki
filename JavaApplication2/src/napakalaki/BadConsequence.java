@@ -86,11 +86,11 @@ public class BadConsequence {
         return specificHiddenTreasures;
     }
     void substractVisibleTreasure(Treasure t){
-        //
+        this.specificVisibleTreasures.remove(t);
     }
     
     void substractHiddenTreasure(Treasure t){
-        //
+        this.specificHiddenTreasures.remove(t);
     }
     
         
