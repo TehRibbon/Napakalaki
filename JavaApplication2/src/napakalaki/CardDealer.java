@@ -170,9 +170,26 @@ public class CardDealer {
         Collections.shuffle(unusedMonsters);
     }
     
-    public Treasure nextTreasure(){}
-    
-    public Monster nextMonster(){}
+    public Treasure nextTreasure(){
+        Treasure tesoro = unusedTreasures.get(0);
+        unusedTreasures.remove(0);
+        if(this.unusedTreasures.isEmpty()){
+            this.unusedTreasures = this.usedTreasures;
+            this.shuffleTreasures();
+        }
+        return tesoro; 
+    }
+     public Monster nextMonster(){
+        Monster monster = this.unusedMonsters.get(0);
+        unusedMonsters.remove(0);
+        if(this.unusedMonsters.isEmpty()){
+            this.unusedMonsters = this.usedMonsters;
+            this.shuffleMonster();
+        }
+        
+        return monster; 
+        
+    }
     
     /*Introduce en el mazo de descartes de tesoros (usedTreasures) el tesoro t.*/
     public void giveTreasureBack(Treasure t){

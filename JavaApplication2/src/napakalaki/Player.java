@@ -175,4 +175,19 @@ public class Player {
     }
     
     public void discardAllTreasures(){}
+    
+    private boolean canMakeTreasureVisible(Treasure t){
+        //Nose hacerlo
+    }
+    
+    
+    private Treasure giveMeAtreasure() {
+
+        Treasure tesoro;
+        random rand = new random();
+        int numero = rand.nextInt(this.HiddenTreasures.size()) + 1;
+        tesoro = this.HiddenTreasures.get(numero);
+
+        return tesoro;
+    }
 }
