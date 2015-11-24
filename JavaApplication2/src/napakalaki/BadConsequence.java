@@ -85,12 +85,16 @@ public class BadConsequence {
     public ArrayList<TreasureKind> getSpecificHiddenTreasures(){
         return specificHiddenTreasures;
     }
-    void substractVisibleTreasure(Treasure t){
-        this.specificVisibleTreasures.remove(t);
-    }
     
+    /*Actualiza el mal rollo para que el tesoro visible t no forme parte del mismo. Es posible que
+    esta actualización no implique cambio alguno, que lleve a eliminar un tipo específico de
+    tesoro visible, o a reducir el número de tesoros visibles pendientes.*/
+    void substractVisibleTreasure(Treasure t){
+        this.specificVisibleTreasures.remove(t.getType());
+    }
+    /*Igual que el anterior, pero para los ocultos.*/
     void substractHiddenTreasure(Treasure t){
-        this.specificHiddenTreasures.remove(t);
+        this.specificHiddenTreasures.remove(t.getType());
     }
     
         

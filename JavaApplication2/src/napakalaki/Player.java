@@ -6,6 +6,7 @@
 package napakalaki;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -176,18 +177,51 @@ public class Player {
     
     public void discardAllTreasures(){}
     
+    /*Comprueba si el tesoro t se puede pasar de oculto a visible según las reglas del juego.*/
     private boolean canMakeTreasureVisible(Treasure t){
-        //Nose hacerlo
+        boolean resultado = false;
+        TreasureKind tipo = t.getType();
+        if(this.VisibleTreasures.size() < 4 ){
+            switch(tipo){
+                case ONEHAND: //Hay que hacer una serie de comprobaciones
+                    //Comprobamos si tiene 
+                    if(tipo == TreasureKind.BOTHHANDS)
+                        resultado = false;
+                    else{
+                        int i=0;
+                        //Comprobamos si tiene algun tesoro de una mano
+                        for(Treasure tesoros : this.VisibleTreasures){
+                            if(tesoros.getType().equals(TreasureKind.ONEHAND)){
+                                i++;
+                            }
+                        }
+                        
+                        if( i == 2)
+                            resultado = false;
+                        else
+                            resultado = true;
+                        }
+                    
+                    break;
+                default: 
+                    if(VisibleTreasures.isEmpty() && HiddenTreasures.isEmpty())
+                        resultado = true;
+                    else
+                        resultado = false;
+                    break;
+            }
+                
+        }
+        return resultado;
     }
     
-    
+    /*Devuelve un tesoro elegido al azar de entre los tesoros ocultos del jugador.*/
     private Treasure giveMeAtreasure() {
 
-        Treasure tesoro;
-        random rand = new random();
+       Treasure tesoro;
+        Random rand = new Random();
         int numero = rand.nextInt(this.HiddenTreasures.size()) + 1;
         tesoro = this.HiddenTreasures.get(numero);
-
         return tesoro;
     }
 }

@@ -170,24 +170,54 @@ public class CardDealer {
         Collections.shuffle(unusedMonsters);
     }
     
+    /*Devuelve el siguiente tesoro que hay en el mazo de tesoros (unusedTreasures) y lo elimina
+    de él. Si al iniciar el método el mazo unusedTreasures estuviese vacío, pasa el mazo de
+    descartes (usedTreasures) al mazo de tesoros (unusedTreasures) y barájalo, dejando el
+    mazo de descartes vacío.*/
     public Treasure nextTreasure(){
-        Treasure tesoro = unusedTreasures.get(0);
-        unusedTreasures.remove(0);
-        if(this.unusedTreasures.isEmpty()){
-            this.unusedTreasures = this.usedTreasures;
+
+        
+        //recorro mazo de descartes e inicializo unusedTreasures
+        if(unusedTreasures.isEmpty()){
+            for(Treasure t : this.usedTreasures){
+                this.unusedTreasures.add(t);
+            }
+        //barajo el mazo
             this.shuffleTreasures();
-        }
-        return tesoro; 
-    }
-     public Monster nextMonster(){
-        Monster monster = this.unusedMonsters.get(0);
-        unusedMonsters.remove(0);
-        if(this.unusedMonsters.isEmpty()){
-            this.unusedMonsters = this.usedMonsters;
-            this.shuffleMonster();
+        //Elimino el mazo de descartes
+            this.usedTreasures.clear();
         }
         
-        return monster; 
+    
+        Treasure primer_tesoro = this.unusedTreasures.get(0);
+        this.unusedTreasures.remove(primer_tesoro);
+        this.usedTreasures.add(primer_tesoro);
+        //obtengo primera carta del mazo
+        return primer_tesoro;
+    }
+    
+    /*Igual que la anterior pero con el mazo de monstruos.*/
+    public Monster nextMonster(){
+         
+        
+        //recorro mazo de descartes e inicializo unusedTreasures
+        if(unusedMonsters.isEmpty()){
+            for(Monster it : this.usedMonsters){
+                this.unusedMonsters.add(it);
+            }
+        //barajo el mazo
+            this.shuffleTreasures();
+        //Elimino el mazo de descartes
+            this.usedMonsters.clear();
+        }
+        
+    
+        Monster primer_monstruo = this.unusedMonsters.get(0);
+        this.unusedMonsters.remove(primer_monstruo);
+        this.usedMonsters.add(primer_monstruo);
+        //obtengo primera carta del mazo
+        return primer_monstruo;
+        
         
     }
     
