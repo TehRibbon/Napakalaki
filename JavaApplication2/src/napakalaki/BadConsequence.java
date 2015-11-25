@@ -97,9 +97,53 @@ public class BadConsequence {
         this.specificHiddenTreasures.remove(t.getType());
     }
     
+    /*Recibe como parámetros los tesoros visibles y ocultos de los que dispone el jugador y
+    devuelve un nuevo objeto mal rollo que se ajusta a las posibilidades del jugador. Los
+    atributos de BadConsequence que debemos tener en cuenta para ajustar el mal rollo que
+    debe cumplir el jugador son nVisibleTreasures, nHiddenTreasures, specificVisibleTreasures y
+    specificHiddenTreasures.
+    
+    Así, para un BadConsequence con los siguientes valores de esos atributos:
+        nVisibleTreasures = 0
+        nHiddenTreasures = 3
+        specificVisibleTreasures = []
+        specificHiddenTreasures = []
+    si los parámetros recibidos son v=[ONEHAND, HELMET] y h=[SHOE], el mal rollo
+    devuelto por la operación tendrá como estado:
+        nVisibleTreasures = 0
+        nHiddenTreasures = 1 (porque el jugador sólo puede llegar a perder un tesoro oculto)
+        specificVisibleTreasures = []
+        specificHiddenTreasures = []
+    Pongamos otro ejemplo. Si el BadConsequence tuviese estado:
+        nVisibleTreasures = 0
+        nHiddenTreasures = 0
+        specificVisibleTreasures = [BOTHHANDS]
+        specificHiddenTreasures = [ONEHAND, ONEHAND, HELMET]
+    y recibiese los parámetros v=[ONEHAND] y h=[ONEHAND, HELMET, ARMOR], el mal rollo
+    devuelto por la operación tendría como estado:
+        nVisibleTreasures = 0
+        nHiddenTreasures = 0
+        specificVisibleTreasures = []
+        specificHiddenTreasures = [ONEHAND, HELMET]*/
+    BadConsequence adjustToFitTreasureList(ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
+        ArrayList<TreasureKind> tVisible = new ArrayList();
+        ArrayList<TreasureKind> tHidden = new ArrayList();
         
-    BadConsequence adjustToFitTreasureList(ArrayList<TreasureKind> visible, ArrayList<TreasureKind> hidden){
-        //
+        for(Treasure t: visible){
+            if (!tVisible.contains(t.getType()))
+                tVisible.add(t.getType());
+        }
+        
+        for(Treasure t: hidden){
+            if(!tHidden.contains(t.getType())) 
+                tHidden.add(t.getType());
+        }
+        
+        BadConsequence bad = new BadConsequence(this.text,0, tVisible, tHidden);
+        
+        return bad;
+        
+        
     }
     
 

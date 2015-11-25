@@ -232,5 +232,13 @@ public class CardDealer {
         this.usedMonsters.add(m);
     }
     
-    public void initCards(){}
+    public void initCards(){
+        this.initTreasureCardDeck();
+        this.shuffleTreasures();
+        
+        this.initMonsterCardDeck();
+        this.shuffleTreasures();
+        
+        
+    }   
 }

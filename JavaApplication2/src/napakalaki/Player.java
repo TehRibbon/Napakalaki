@@ -7,6 +7,7 @@ package napakalaki;
 
 import java.util.ArrayList;
 import java.util.Random;
+import static napakalaki.CombatResult.*;
 
 /**
  *
@@ -60,7 +61,7 @@ public class Player {
     }
     /*Incrementa el nivel del jugador en i niveles, teniendo en cuenta las reglas del juego.*/
     
-    private void incrementLeveles(int i){
+    private void incrementLevels(int i){
         this.level += i;
     }
     
@@ -81,12 +82,46 @@ public class Player {
         this.pendingBadConsequence = b;
     }
     
+    /*Esta operación es la encargada de aplicar el buen rollo del monstruo vencido al jugador,
+    sumando los niveles correspondientes y pidiendo al CardDealer que le dé el número de
+    tesoros indicado en el buen rollo del monstruo. Esos tesoros se añaden a sus tesoros
+    ocultos.*/
     private void applyPrize(Monster m){
+        int nLevels = m.getLevelsGained();
+        
+        this.incrementLevels(nLevels);
+        
+        int nTreasures = m.getTreasuresGained();
+        
+        if(nTreasures > 0){
+            CardDealer dealer = CardDealer.getInstance();
+            
+            for(int i= 1; i<= nTreasures; i++){
+                
+                Treasure t = dealer.nextTreasure();
+                this.HiddenTreasures.add(t);
+            }
+        }      
     
     }
     
+    /*Cuando el jugador ha perdido el combate, hay que considerar el mal rollo que le impone el
+    monstruo con el que combatió. Para ello, decrementa sus niveles según indica el mal rollo y
+    guarda una copia de un objeto badConsequence ajustada a los tesoros que puede perder.
+    Es decir, un objeto mal rollo que refleje el mal rollo indicado por el monstruo pero
+    eliminando las condiciones que el jugador no pueda cumplir según los tesoros de que
+    disponga (por ejemplo si el mal rollo del monstruo implica perder 2 tesoros visibles y el
+    jugador sólo tiene 1, entonces el mal rollo pendiente será de sólo 1 tesoro visible). La
+    operación encargada de hacer esto es adjustToFitTreasureList de la clase badConsequence.
+    Éste es el mal rollo pendiente (pendingbadConsequence) que el jugador almacenará y que
+    deberá cumplir descartándose de esos tesoros antes de que pueda pasar al siguiente turno.*/
     private void applyBadConsequence(Monster m){
-    
+        BadConsequence badconsequence = m.getBadConsequence();
+        int nLevels = badconsequence.getLevels();
+        this.decrementLevels(nLevels);
+        pendingBadConsequence = badconsequence.adjustToFitTreasureList(VisibleTreasures, HiddenTreasures);
+        
+        this.setPendingBadConsequence(pendingBadConsequence);
     }
     
     /*Devuelve el número de tesoros visibles de tipo tKind que tiene el jugador.*/
@@ -112,16 +147,68 @@ public class Player {
        return this.dead;
     }
     
-    public Treasure [] getHiddenTreasure(){}
+    public ArrayList<Treasure> getHiddenTreasure(){
+        return HiddenTreasures;
+    }
     
-    public Treasure[] getVisibleTreasure(){}
+    public ArrayList<Treasure> getVisibleTreasure(){
+        return VisibleTreasures;
+    }
     
-    public CombatResult(Monster m){}
+    public CombatResult combat(Monster m){
+        CombatResult combatResult;
+        int myLevel = getCombatLevel();
+        int monstersLevel = m.getCombatLevel();
+        
+        if(myLevel > monstersLevel){
+            applyPrize(m);
+            
+            if(myLevel >= MAXLEVEL)
+                combatResult = WINGAME;
+            else
+                combatResult = WIN;
+        }
+        else{
+            applyBadConsequence(m);
+            combatResult = LOOSE;
+        }
+        
+        return combatResult;
+    }
     
-    public void makeTreasureVisible(Treasure t){}
+    /*Convierte un tesoro en visible*/
+    public void makeTreasureVisible(Treasure t){
+    boolean canI = this.canMakeTreasureVisible(t);
     
-    public void discardVisibleTreasures(Treasure t){}
+        if(canI){
+            this.VisibleTreasures.add(t);
+            this.HiddenTreasures.remove(t);
+        }
+    }
     
+    /*Descarta un tesoro visible, si pendingBadConsequence está vacio se elimina un tesoro visible. Si no hay tesoros se llama a dieIfNoTreasures*/
+    public void discardVisibleTreasures(Treasure t){
+        this.VisibleTreasures.remove(t);
+        
+        if(this.pendingBadConsequence != null && !this.pendingBadConsequence.isEmpty()){
+            this.pendingBadConsequence.substractVisibleTreasure(t);
+            
+        }
+        
+        this.dieIfNoTreasures();
+    }
+    
+    /*Análogo al método anterior pero con los tesoros ocultos*/
+    public void discardHiddenTreasures(Treasure t){
+        this.HiddenTreasures.remove(t);
+        
+        if(this.pendingBadConsequence != null && !this.pendingBadConsequence.isEmpty()){
+            this.pendingBadConsequence.substractHiddenTreasure(t);
+        }
+        
+        this.dieIfNoTreasures();
+                
+    }
     /*Devuelve true cuando el jugador no tiene ningún mal rollo que cumplir y no tiene
       más de 4 tesoros ocultos, y false en caso contrario. Para comprobar que el jugador
       no tenga mal rollo que cumplir, utiliza el método isEmpty de la clase
@@ -134,14 +221,62 @@ public class Player {
         return resultado;
     }
     
-    public void initTreasures(){}
+    
+    /*Cuando un jugador está en su primer turno o se ha quedado sin tesoros, hay que
+    proporcionarle nuevos tesoros para que pueda seguir jugando. El número de tesoros que se
+    les proporciona viene dado por el valor que saque al tirar el dado:
+        -Si (dado == 1) roba un tesoro.
+        -Si (1 < dado< 6) roba dos tesoros.
+        -Si (dado == 6) roba tres tesoros.*/
+    public void initTreasures(){
+        CardDealer dealer = CardDealer.getInstance();
+        Dice dice = Dice.getInstance();
+        bringToLife();
+        Treasure treasure = dealer.nextTreasure();
+        HiddenTreasures.add(treasure);
+        int number = dice.nextNumber();
+        
+        if(number > 1){
+            treasure = dealer.nextTreasure();
+            HiddenTreasures.add(treasure);
+        }
+        
+        if(number == 6){
+            treasure = dealer.nextTreasure();
+            HiddenTreasures.add(treasure);
+            
+        }
+    }
     
     /*Devuelve el nivel del jugador.*/
     public int getLevels(){
         return level;
     }
     
-    public Treasure stealTreasure(){}
+    /*Cuando el jugador decide robar un tesoro a su enemigo, este método comprueba que
+    puede hacerlo (sólo se puede robar un tesoro durante la partida) y que su enemigo tiene
+    tesoros ocultos para ser robados (canYouGiveMeATreasure()), en el caso que así sea éste le
+    proporciona un tesoro que se almacenará con sus ocultos. El jugador no puede volver a
+    robar otro tesoro durante la partida. En el caso que no se haya podido robar el tesoro por
+    algún motivo se devuelve null.*/
+    public Treasure stealTreasure(){
+        boolean canI = canISteal();
+        Treasure treasure = null;
+        if(canI){
+            boolean canYou = canYouGiveMeATreasure();
+            if(canYou){
+                treasure = enemy.giveMeATreasure();
+                HiddenTreasures.add(treasure);
+                this.haveStolen();
+            }
+            
+        }
+        else{
+            treasure = null;
+        }
+        return treasure;
+        
+    }
     
     /*Asigna valor al atributo que referencia al enemigo del jugador.*/
     public Player getEnemy(){
@@ -152,7 +287,14 @@ public class Player {
         this.enemy = enemy;
     }
     
-    private Treasure giveMeATreasure(){}
+    /*Roba un tesoro*/
+    private Treasure giveMeATreasure(){
+        Treasure solucion;
+        int posAleatoria = (int) (Math.random()*HiddenTreasures.size());
+        solucion = HiddenTreasures.get(posAleatoria);
+            
+        return solucion;
+    }
     
     /*Devuelve true si el jugador no ha robado ningún tesoro a su enemigo y false en
       caso contrario.*/
@@ -175,7 +317,22 @@ public class Player {
         canISteal = false;
     }
     
-    public void discardAllTreasures(){}
+    /*El jugador se descarta de todos sus tesoros ocultos y visibles. Para cada tesoro que se
+    descarta se hace uso de la operación discardVisibleTreasure(t:Treasure) o
+    discardHiddenTreasure(t:Treasure) según corresponda, de esa forma se verifica si se cumple
+    con algún mal rollo pendiente.*/
+    public void discardAllTreasures(){
+        for(int i=1; i<VisibleTreasures.size(); i++){
+            Treasure treasure_visible = VisibleTreasures.get(i);
+            discardVisibleTreasures(treasure_visible);
+        }
+        
+        for(int j=1; j<HiddenTreasures.size(); j++){
+            Treasure treasure_oculto = HiddenTreasures.get(j);
+            discardHiddenTreasures(treasure_oculto);
+        }
+        
+    }
     
     /*Comprueba si el tesoro t se puede pasar de oculto a visible según las reglas del juego.*/
     private boolean canMakeTreasureVisible(Treasure t){
