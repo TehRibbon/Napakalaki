@@ -191,7 +191,7 @@ public class CardDealer {
         
     
         Treasure primer_tesoro = this.unusedTreasures.get(0);
-        this.unusedTreasures.remove(0);
+        this.unusedTreasures.remove(primer_tesoro);
         this.usedTreasures.add(primer_tesoro);
         //obtengo primera carta del mazo
         return primer_tesoro;
