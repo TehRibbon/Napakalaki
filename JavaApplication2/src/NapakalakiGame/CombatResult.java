@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package napakalaki;
+package NapakalakiGame;
 
 /**
  *
@@ -11,7 +11,7 @@ package napakalaki;
  */
 public enum CombatResult {
     
-    WINGAME, WIN, LOOSE;
+    WINGAME, WIN, LOSE;
     @Override
     public String toString(){
     String solucion = "";
@@ -20,7 +20,7 @@ public enum CombatResult {
             break;
         case WIN : solucion = "Has ganado.";
             break;
-        case LOOSE : solucion = "Has perdido";
+        case LOSE : solucion = "Has perdido";
             break;
         default: 
             return "Error.";

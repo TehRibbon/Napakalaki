@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package napakalaki;
+package NapakalakiGame;
 
 import java.util.*;
 
@@ -63,11 +63,11 @@ public class BadConsequence {
         this.levels = level;
     }
     
-    public int getTesorosVisibles(){
+    public int getVisibleTreasures(){
         return nVisiblesTreasures;
     }
     
-    public int getTesorosOcultos(){
+    public int getHiddenTreasures(){
         return nHiddenTreasures;
     }
     

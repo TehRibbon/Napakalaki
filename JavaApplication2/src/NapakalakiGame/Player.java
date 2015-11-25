@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package napakalaki;
+package NapakalakiGame;
 
 import java.util.ArrayList;
 import java.util.Random;
-import static napakalaki.CombatResult.*;
+import static NapakalakiGame.CombatResult.*;
 
 /**
  *
@@ -30,7 +30,7 @@ public class Player {
     //Constructor
     public Player(String name) {
         this.name = name;
-        
+        pendingBadConsequence = new BadConsequence("",0,0,0);        
     }
     
     //Métodos
@@ -147,11 +147,11 @@ public class Player {
        return this.dead;
     }
     
-    public ArrayList<Treasure> getHiddenTreasure(){
+    public ArrayList<Treasure> getHiddenTreasures(){
         return HiddenTreasures;
     }
     
-    public ArrayList<Treasure> getVisibleTreasure(){
+    public ArrayList<Treasure> getVisibleTreasures(){
         return VisibleTreasures;
     }
     
@@ -170,7 +170,7 @@ public class Player {
         }
         else{
             applyBadConsequence(m);
-            combatResult = LOOSE;
+            combatResult = LOSE;
         }
         
         return combatResult;

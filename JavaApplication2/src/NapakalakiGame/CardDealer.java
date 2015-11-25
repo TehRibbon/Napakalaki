@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package napakalaki;
+package NapakalakiGame;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +23,8 @@ public class CardDealer {
     private ArrayList<Monster> unusedMonsters;
     
     //Constructor
-    private CardDealer(){}
+    private CardDealer(){
+    }
     
     //Patrón enumeration
     public static CardDealer getInstance(){
@@ -190,7 +191,7 @@ public class CardDealer {
         
     
         Treasure primer_tesoro = this.unusedTreasures.get(0);
-        this.unusedTreasures.remove(primer_tesoro);
+        this.unusedTreasures.remove(0);
         this.usedTreasures.add(primer_tesoro);
         //obtengo primera carta del mazo
         return primer_tesoro;
