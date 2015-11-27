@@ -33,6 +33,10 @@ public class Treasure {
         return tipo; 
     }
     
+    public String toString(){
+        return this.name;
+    }
+    
       
     
 }

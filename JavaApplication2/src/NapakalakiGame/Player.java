@@ -21,8 +21,8 @@ public class Player {
     private boolean dead = true;
     private boolean canISteal = true;
     private CombatResult resultadoCombate;
-    private ArrayList<Treasure> HiddenTreasures;
-    private ArrayList<Treasure> VisibleTreasures;
+    private ArrayList<Treasure> HiddenTreasures = new ArrayList();
+    private ArrayList<Treasure> VisibleTreasures = new ArrayList();
     private BadConsequence pendingBadConsequence;
     private Player enemy;
     
@@ -30,8 +30,13 @@ public class Player {
     //Constructor
     public Player(String name) {
         this.name = name;
-        pendingBadConsequence = new BadConsequence("",0,0,0);        
+        pendingBadConsequence = new BadConsequence("",0,0,0);    
+        this.enemy = null;
+        this.level = 1;
     }
+    
+    
+    
     
     //Métodos
     
@@ -158,10 +163,10 @@ public class Player {
     public CombatResult combat(Monster m){
         CombatResult combatResult;
         int myLevel = getCombatLevel();
-        int monstersLevel = m.getCombatLevel();
+        int monsterLevel = m.getCombatLevel();
         
-        if(myLevel > monstersLevel){
-            applyPrize(m);
+        if(myLevel > monsterLevel){
+            this.applyPrize(m);
             
             if(myLevel >= MAXLEVEL)
                 combatResult = WINGAME;
@@ -263,17 +268,16 @@ public class Player {
         boolean canI = canISteal();
         Treasure treasure = null;
         if(canI){
-            boolean canYou = canYouGiveMeATreasure();
+            boolean canYou = this.enemy.canYouGiveMeATreasure();
             if(canYou){
-                treasure = enemy.giveMeATreasure();
+                treasure = this.enemy.giveMeATreasure();
                 HiddenTreasures.add(treasure);
                 this.haveStolen();
-            }
+            } 
             
         }
-        else{
-            treasure = null;
-        }
+        
+        
         return treasure;
         
     }
@@ -284,7 +288,7 @@ public class Player {
     }
     
     public void setEnemy(Player enemy){
-        this.enemy = enemy;
+        this.enemy = enemy.getEnemy();
     }
     
     /*Roba un tesoro*/
@@ -380,5 +384,11 @@ public class Player {
         int numero = rand.nextInt(this.HiddenTreasures.size()) + 1;
         tesoro = this.HiddenTreasures.get(numero);
         return tesoro;
+    }
+    
+    @Override
+    public String toString(){
+        
+        return this.name;
     }
 }

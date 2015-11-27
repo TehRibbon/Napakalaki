@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
     
-        
+        /*
         ArrayList<Monster> monstruos = new ArrayList();
         
        
@@ -96,7 +96,7 @@ public class Main {
         BadConsequence badConsequence19 = new BadConsequence("Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros visibles de las manos.", 3,5,0 );
         Prize prize19 = new Prize(1,1);
         monstruos.add(new Monster("BIcéfalo",20, badConsequence19, prize19));
-    
+               
         //COMPROBACIONES
         
         System.out.print("Tienen un nivel superior a 10: \n");
@@ -146,7 +146,7 @@ public class Main {
                     
                 }
         }
-    
+    */
         //DIAGRAMA UML
         
         

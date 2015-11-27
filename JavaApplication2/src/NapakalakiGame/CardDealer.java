@@ -39,6 +39,7 @@ public class CardDealer {
     private void initTreasureCardDeck(){
         
         unusedTreasures = new ArrayList();
+        usedTreasures = new ArrayList();
         
         unusedTreasures.add(new Treasure("Sí mi amo", 4, TreasureKind.HELMET) );
         unusedTreasures.add(new Treasure("Botas de investigación", 3, TreasureKind.SHOES) );
@@ -83,6 +84,8 @@ public class CardDealer {
     private void initMonsterCardDeck(){
         
         unusedMonsters = new ArrayList();
+        usedMonsters = new ArrayList();
+        
         BadConsequence constante = new BadConsequence("",0,0,0);
         //Byakhees de bonanza
         BadConsequence badConsequence1 = new BadConsequence( "Pierdes tu armadura visible y otra oculta.", 0, new ArrayList(Arrays.asList(TreasureKind.ARMOR)), new ArrayList(Arrays.asList(TreasureKind.ARMOR)));
@@ -188,13 +191,13 @@ public class CardDealer {
         //Elimino el mazo de descartes
             this.usedTreasures.clear();
         }
+        Treasure siguiente_tesoro = this.unusedTreasures.get(0);
         
-    
-        Treasure primer_tesoro = this.unusedTreasures.get(0);
-        this.unusedTreasures.remove(primer_tesoro);
-        this.usedTreasures.add(primer_tesoro);
+        this.unusedTreasures.remove(siguiente_tesoro);
+        this.usedTreasures.add(siguiente_tesoro);
+        
         //obtengo primera carta del mazo
-        return primer_tesoro;
+        return siguiente_tesoro;
     }
     
     /*Igual que la anterior pero con el mazo de monstruos.*/

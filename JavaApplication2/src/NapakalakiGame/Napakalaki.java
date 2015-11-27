@@ -46,8 +46,9 @@ public class Napakalaki{
         //Inicializamos el array de players
             players = new ArrayList();
             
-            for(String iterador : names){
+            for(String iterador: names){
                 players.add(new Player(iterador));
+                
             }
             
             this.nextPlayer();
@@ -134,6 +135,8 @@ public class Napakalaki{
     otro caso, el jugador pierde el combate y se aplica el mal rollo correspondiente.*/
     public CombatResult developCombat(){
         CombatResult combat = currentPlayer.combat(currentMonster);
+        
+        
         return combat;
         
         
@@ -179,9 +182,9 @@ public class Napakalaki{
     public void initGame(ArrayList<String> players){
         
         this.initPlayers(players);
-        dealer.initCards();
+        this.setEnemies();
+        this.dealer.initCards();
         this.nextTurn();
-       
            
         
     }
@@ -207,17 +210,20 @@ public class Napakalaki{
     initTreasures.*/
     public boolean nextTurn(){
         
-        boolean ok = this.nextTurnAllowed();
-        boolean muerto = this.currentPlayer.isDead();
-        if(ok){
-            currentMonster = dealer.nextMonster();
-            currentPlayer = nextPlayer();
+        boolean stateOk = this.nextTurnAllowed();
+        
+        if(stateOk){
+            this.currentMonster = dealer.nextMonster();
+            this.currentPlayer = nextPlayer();
+            boolean dead = currentPlayer.isDead();
+            if(dead){
+                this.currentPlayer.initTreasures();
+            }
+        } else {
+            this.currentMonster = this.dealer.nextMonster(); //Al no poder cambiar de turno, el monstruo no cambia
         }
         
-        if(currentPlayer.isDead() )
-            this.currentPlayer.initTreasures();
-        
-        return ok;
+        return stateOk;
 
     }
     
@@ -227,4 +233,6 @@ public class Napakalaki{
         return result == CombatResult.WINGAME;
     
     }
+    
+   
 }
