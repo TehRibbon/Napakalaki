@@ -118,15 +118,19 @@ public class Napakalaki{
     /*Se asigna un enemigo a cada jugador. Esta asignación se hace de forma aleatoria teniendo
       en cuenta que un jugador no puede ser enemigo de sí mismo.*/
     private void setEnemies(){
-        Random rand = new Random(); //creamos instancia de Random
-        int posAleatoria = rand.nextInt(players.size());
-        Player jugador = players.get(posAleatoria);
-        jugador.setEnemy(players.get(posAleatoria));
-    //for(Player iterador: players){
-            //while(iterador != iterador.getEnemy()){
-        //        iterador.setEnemy(players.get(posAleatoria)); 
-            //}    
-       //}
+        int tamanio = players.size();
+        int posAleatoria; 
+        
+        for(Player iterador: players){
+            posAleatoria = (int) (Math.random() * tamanio);
+            
+            while(players.get(posAleatoria) == iterador){
+                posAleatoria = (int) (Math.random() * tamanio);
+            }
+                
+            iterador.setEnemy(players.get(posAleatoria)); 
+        }    
+       
     }
     
     /*Operación responsabilidad de la única instancia de Napakalaki, la cual pasa el control al
