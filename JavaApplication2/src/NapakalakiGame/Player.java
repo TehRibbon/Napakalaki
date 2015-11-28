@@ -34,6 +34,14 @@ public class Player {
         this.level = 1;
     }
     
+    public Player(Player jugador){
+        this.name = jugador.name;
+        this.HiddenTreasures = jugador.HiddenTreasures;
+        this.VisibleTreasures = jugador.VisibleTreasures;
+        this.dead = jugador.dead;
+        this.enemy = jugador.enemy;
+        this. pendingBadConsequence = jugador.pendingBadConsequence;
+    }
     
     
     
