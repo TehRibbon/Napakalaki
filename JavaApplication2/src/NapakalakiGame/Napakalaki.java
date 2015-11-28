@@ -52,7 +52,7 @@ public class Napakalaki{
                 
             }
             
-            //this.nextPlayer();
+            this.nextPlayer();
         
     
     
@@ -185,10 +185,12 @@ public class Napakalaki{
     public void initGame(ArrayList<String> players){
         
         this.initPlayers(players);
-        this.setEnemies();
-        this.nextTurn();
         this.dealer.initCards();
+        this.nextTurn();
         
+        this.setEnemies();
+        
+     
         
 
         }
