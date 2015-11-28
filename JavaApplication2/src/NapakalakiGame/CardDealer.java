@@ -162,7 +162,7 @@ public class CardDealer {
         //Bicéfalo
         BadConsequence badConsequence19 = new BadConsequence("Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros visibles de las manos.", 3,constante.getMAXTREASURES(),0 );
         Prize prize19 = new Prize(1,1);
-        unusedMonsters.add(new Monster("BIcéfalo",20, badConsequence19, prize19));
+        unusedMonsters.add(new Monster("Bicéfalo",20, badConsequence19, prize19));
     
     }
     /*Baraja el mazo de cartas de tesoros unusedTreasures.*/
@@ -197,7 +197,7 @@ public class CardDealer {
         this.usedTreasures.add(siguiente_tesoro);
         
         //obtengo primera carta del mazo
-        return siguiente_tesoro;
+      return siguiente_tesoro;
     }
     
     /*Igual que la anterior pero con el mazo de monstruos.*/
@@ -241,7 +241,7 @@ public class CardDealer {
         this.shuffleTreasures();
         
         this.initMonsterCardDeck();
-        this.shuffleTreasures();
+        this.shuffleMonster();
         
         
     }   

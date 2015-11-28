@@ -31,7 +31,6 @@ public class Player {
     public Player(String name) {
         this.name = name;
         pendingBadConsequence = new BadConsequence("",0,0,0);    
-        this.enemy = null;
         this.level = 1;
     }
     
@@ -238,17 +237,16 @@ public class Player {
         Dice dice = Dice.getInstance();
         bringToLife();
         Treasure treasure = dealer.nextTreasure();
-        HiddenTreasures.add(treasure);
+        this.HiddenTreasures.add(treasure);
         int number = dice.nextNumber();
         
-        if(number > 1){
-            treasure = dealer.nextTreasure();
-            HiddenTreasures.add(treasure);
-        }
-        
+        //Lo he puesto al contrario porque siempre entraba en > 1
         if(number == 6){
             treasure = dealer.nextTreasure();
-            HiddenTreasures.add(treasure);
+            this.HiddenTreasures.add(treasure);
+        } else if(number > 1){
+            treasure = dealer.nextTreasure();
+            this.HiddenTreasures.add(treasure);
             
         }
     }
@@ -268,9 +266,9 @@ public class Player {
         boolean canI = canISteal();
         Treasure treasure = null;
         if(canI){
-            boolean canYou = this.enemy.canYouGiveMeATreasure();
+            boolean canYou = canYouGiveMeATreasure();
             if(canYou){
-                treasure = this.enemy.giveMeATreasure();
+                treasure = giveMeATreasure();
                 HiddenTreasures.add(treasure);
                 this.haveStolen();
             } 
@@ -379,9 +377,9 @@ public class Player {
     /*Devuelve un tesoro elegido al azar de entre los tesoros ocultos del jugador.*/
     private Treasure giveMeAtreasure() {
 
-       Treasure tesoro;
+        Treasure tesoro;
         Random rand = new Random();
-        int numero = rand.nextInt(this.HiddenTreasures.size()) + 1;
+        int numero = rand.nextInt(this.HiddenTreasures.size());
         tesoro = this.HiddenTreasures.get(numero);
         return tesoro;
     }

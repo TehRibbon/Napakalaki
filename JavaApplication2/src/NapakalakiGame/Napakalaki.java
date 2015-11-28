@@ -49,9 +49,10 @@ public class Napakalaki{
             for(String iterador: names){
                 players.add(new Player(iterador));
                 
+                
             }
             
-            this.nextPlayer();
+            //this.nextPlayer();
         
     
     
@@ -119,11 +120,13 @@ public class Napakalaki{
     private void setEnemies(){
         Random rand = new Random(); //creamos instancia de Random
         int posAleatoria = rand.nextInt(players.size());
-        for(Player iterador: players){
-            while(iterador != iterador.getEnemy()){
-                iterador.setEnemy(players.get(posAleatoria)); 
-            }    
-        }
+        Player jugador = players.get(posAleatoria);
+        jugador.setEnemy(players.get(posAleatoria));
+    //for(Player iterador: players){
+            //while(iterador != iterador.getEnemy()){
+        //        iterador.setEnemy(players.get(posAleatoria)); 
+            //}    
+       //}
     }
     
     /*Operación responsabilidad de la única instancia de Napakalaki, la cual pasa el control al
@@ -136,7 +139,7 @@ public class Napakalaki{
     public CombatResult developCombat(){
         CombatResult combat = currentPlayer.combat(currentMonster);
         
-        
+        this.dealer.giveMonsterBack(this.currentMonster);
         return combat;
         
         
@@ -183,11 +186,12 @@ public class Napakalaki{
         
         this.initPlayers(players);
         this.setEnemies();
-        this.dealer.initCards();
         this.nextTurn();
-           
+        this.dealer.initCards();
         
-    }
+        
+
+        }
     
     /*Devuelve el jugador actual (currentPlayer).*/
     public Player getCurrentPlayer(){
@@ -222,6 +226,9 @@ public class Napakalaki{
         } else {
             this.currentMonster = this.dealer.nextMonster(); //Al no poder cambiar de turno, el monstruo no cambia
         }
+        
+        if(currentPlayer == null)
+            stateOk = true;
         
         return stateOk;
 
