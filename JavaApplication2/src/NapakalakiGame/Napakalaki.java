@@ -44,6 +44,7 @@ public class Napakalaki{
       jugadores.*/
     private void initPlayers(ArrayList<String> names ){
         //Inicializamos el array de players
+            dealer = CardDealer.getInstance();
             players = new ArrayList();
             
             for(String iterador: names){
