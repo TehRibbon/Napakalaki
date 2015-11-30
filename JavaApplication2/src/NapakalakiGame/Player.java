@@ -30,18 +30,19 @@ public class Player {
     //Constructor
     public Player(String name) {
         this.name = name;
-        pendingBadConsequence = new BadConsequence("",0,0,0);    
+        this.pendingBadConsequence = new BadConsequence("",0,0,0);    
         this.level = 1;
+        this.dead = true;
     }
     
-    public Player(Player jugador){
+    /*public Player(Player jugador){
         this.name = jugador.name;
         this.HiddenTreasures = jugador.HiddenTreasures;
         this.VisibleTreasures = jugador.VisibleTreasures;
         this.dead = jugador.dead;
         this.enemy = jugador.enemy;
         this. pendingBadConsequence = jugador.pendingBadConsequence;
-    }
+    }*/
     
     
     
@@ -227,9 +228,9 @@ public class Player {
       BadConsequence.*/
     
     public boolean validState(){
-        boolean resultado = false;
-        if( (this.pendingBadConsequence.isEmpty() ) && (this.HiddenTreasures.size() <= 4) )
-            resultado = true;
+        boolean resultado = true;
+        if( (!this.pendingBadConsequence.isEmpty() ) || (this.HiddenTreasures.size() > 4) )
+            resultado = false;
         return resultado;
     }
     
@@ -248,11 +249,12 @@ public class Player {
         this.HiddenTreasures.add(treasure);
         int number = dice.nextNumber();
         
-        //Lo he puesto al contrario porque siempre entraba en > 1
         if(number == 6){
             treasure = dealer.nextTreasure();
             this.HiddenTreasures.add(treasure);
-        } else if(number > 1){
+        }
+        
+        if(number > 1){
             treasure = dealer.nextTreasure();
             this.HiddenTreasures.add(treasure);
             

@@ -53,7 +53,8 @@ public class Napakalaki{
                 
             }
             
-            this.nextPlayer();
+            
+            currentPlayer = nextPlayer();
         
     
     
@@ -72,7 +73,6 @@ public class Napakalaki{
       Una vez calculado el índice, se devuelve el jugador que ocupa esa posición.*/
     
     private Player nextPlayer(){
-        
         int indice_siguiente = 0;
         Player nextPlayer;
         int total_jugadores;
@@ -113,7 +113,12 @@ public class Napakalaki{
       true en caso contrario, para ello usa el método de Player validState() donde se realizan las
       comprobaciones pertinentes.*/
     private boolean nextTurnAllowed(){
-        return currentPlayer.validState();
+        boolean solucion = true;
+        
+        if(currentPlayer != null)
+            solucion = currentPlayer.validState();
+        
+        return solucion;
     }
     
     /*Se asigna un enemigo a cada jugador. Esta asignación se hace de forma aleatoria teniendo
@@ -221,14 +226,16 @@ public class Napakalaki{
     initTreasures.*/
     public boolean nextTurn(){
         
-        boolean stateOk = this.nextTurnAllowed();
-        
+        boolean stateOk = nextTurnAllowed();
+        boolean dead = currentPlayer.isDead();
+        currentPlayer.toString();
         if(stateOk){
-            this.currentMonster = dealer.nextMonster();
-            this.currentPlayer = nextPlayer();
-            boolean dead = currentPlayer.isDead();
+            currentMonster = dealer.nextMonster();
+            currentPlayer = nextPlayer();
+             System.out.println("valid state ok"); 
             if(dead){
-                this.currentPlayer.initTreasures();
+                currentPlayer.initTreasures();
+                System.out.println("inicializo treasures");
             }
         } else {
             this.currentMonster = this.dealer.nextMonster(); //Al no poder cambiar de turno, el monstruo no cambia
