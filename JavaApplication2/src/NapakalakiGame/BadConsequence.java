@@ -191,11 +191,11 @@ public class BadConsequence {
     }
     
     public String toString(){
-        return  text + "\nNiveles que se pierden = " + Integer.toString(levels) 
-                + "\nTesoros visibles que se pierden =" + Integer.toString(nVisiblesTreasures) 
-                + "\nTesoros ocultos que se pierden =" + Integer.toString(nHiddenTreasures)  
-                + "\nTesoros ocultos específicos que se pierden =" + auxiliarString(specificHiddenTreasures)
-                + "\nTesoros visibles específicos que se pierden=" + auxiliarString(specificVisibleTreasures)
+        return  text + "\n\t>Niveles que se pierden = " + Integer.toString(levels) 
+                + "\n\t>Tesoros visibles que se pierden =" + Integer.toString(nVisiblesTreasures) 
+                + "\n\t>Tesoros ocultos que se pierden =" + Integer.toString(nHiddenTreasures)  
+                + "\n\t>Tesoros ocultos específicos que se pierden =" + auxiliarString(specificHiddenTreasures)
+                + "\n\t>Tesoros visibles específicos que se pierden=" + auxiliarString(specificVisibleTreasures)
                 ;
     }
     
