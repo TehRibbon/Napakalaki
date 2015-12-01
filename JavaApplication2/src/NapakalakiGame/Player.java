@@ -23,26 +23,17 @@ public class Player {
     private CombatResult resultadoCombate;
     private ArrayList<Treasure> HiddenTreasures = new ArrayList();
     private ArrayList<Treasure> VisibleTreasures = new ArrayList();
-    private BadConsequence pendingBadConsequence;
+    private BadConsequence pendingBadConsequence = new BadConsequence("",0,0,0);
     private Player enemy;
     
     
     //Constructor
     public Player(String name) {
         this.name = name;
-        this.pendingBadConsequence = new BadConsequence("",0,0,0);    
         this.level = 1;
-        this.dead = true;
     }
     
-    /*public Player(Player jugador){
-        this.name = jugador.name;
-        this.HiddenTreasures = jugador.HiddenTreasures;
-        this.VisibleTreasures = jugador.VisibleTreasures;
-        this.dead = jugador.dead;
-        this.enemy = jugador.enemy;
-        this. pendingBadConsequence = jugador.pendingBadConsequence;
-    }*/
+   
     
     
     
@@ -276,9 +267,9 @@ public class Player {
         boolean canI = canISteal();
         Treasure treasure = null;
         if(canI){
-            boolean canYou = canYouGiveMeATreasure();
+            boolean canYou = enemy.canYouGiveMeATreasure();
             if(canYou){
-                treasure = giveMeATreasure();
+                treasure = enemy.giveMeATreasure();                
                 HiddenTreasures.add(treasure);
                 this.haveStolen();
             } 
@@ -296,7 +287,7 @@ public class Player {
     }
     
     public void setEnemy(Player enemy){
-        this.enemy = enemy.getEnemy();
+        this.enemy = enemy;
     }
     
     /*Roba un tesoro*/
@@ -318,10 +309,12 @@ public class Player {
       en caso contrario.*/
     
     private boolean canYouGiveMeATreasure(){
-        boolean canYou = false;
-        if(canISteal == true)
-            canYou = true;
-        return canYou;
+        boolean solucion = false;
+        
+        if(HiddenTreasures.size() > 0 || VisibleTreasures.size() >0){
+            solucion = true;
+        }
+       return solucion;
     }
     
     /*Cambia el atributo canISteal a false cuando el jugador roba un tesoro.*/
@@ -372,11 +365,29 @@ public class Player {
                         }
                     
                     break;
-                default: 
-                    if(VisibleTreasures.isEmpty() && HiddenTreasures.isEmpty())
-                        resultado = true;
-                    else
+                case BOTHHANDS:
+                    if(howManyVisibleTreasures(TreasureKind.ONEHAND) > 0){
                         resultado = false;
+                    } else {
+                        int j=0;
+                        //Comprobamos si tiene algun tesoro de una mano
+                        for(Treasure te : this.VisibleTreasures){
+                            if(te.getType().equals(TreasureKind.BOTHHANDS)){
+                                j++;
+                            }
+                        }
+                        
+                        if( j == 1){
+                            resultado = false;
+                        }
+                        else
+                            resultado = true;
+                        
+                        break;
+                    }
+                    default: 
+                    resultado = howManyVisibleTreasures(tipo) == 0;
+         
                     break;
             }
                 

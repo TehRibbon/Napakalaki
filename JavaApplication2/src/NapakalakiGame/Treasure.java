@@ -34,7 +34,7 @@ public class Treasure {
     }
     
     public String toString(){
-        return this.name;
+        return this.name + " Tipo: " + this.tipo.toString();
     }
     
       

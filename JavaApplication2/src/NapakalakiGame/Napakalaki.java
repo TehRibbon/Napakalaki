@@ -79,9 +79,9 @@ public class Napakalaki{
         
         //si no está definido el jugador actual significa que es la primera jugada
         if(currentPlayer == null){
-            for(int i=0; i<1; i++)
-                posicion = (int)(Math.random()* total_jugadores);
-            
+               
+                posicion = (int)(Math.random()* total_jugadores - 1);
+                
                 aux = players.get(posicion);
                 currentPlayer = aux;
             
@@ -227,22 +227,22 @@ public class Napakalaki{
     public boolean nextTurn(){
         
         boolean stateOk = nextTurnAllowed();
-        boolean dead = currentPlayer.isDead();
-        currentPlayer.toString();
+        
+        
         if(stateOk){
             currentMonster = dealer.nextMonster();
             currentPlayer = nextPlayer();
-             System.out.println("valid state ok"); 
+            
+            boolean dead = currentPlayer.isDead();
             if(dead){
                 currentPlayer.initTreasures();
-                System.out.println("inicializo treasures");
             }
-        } else {
-            this.currentMonster = this.dealer.nextMonster(); //Al no poder cambiar de turno, el monstruo no cambia
-        }
+        } //else {
+          //  this.currentMonster = this.dealer.nextMonster(); //Al no poder cambiar de turno, el monstruo no cambia
+        //}
         
-        if(currentPlayer == null)
-            stateOk = true;
+        //if(currentPlayer == null)
+        //    stateOk = true;
         
         return stateOk;
 

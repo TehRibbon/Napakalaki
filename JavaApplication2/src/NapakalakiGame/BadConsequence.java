@@ -126,21 +126,50 @@ public class BadConsequence {
         specificVisibleTreasures = []
         specificHiddenTreasures = [ONEHAND, HELMET]*/
     BadConsequence adjustToFitTreasureList(ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
+        BadConsequence bad;
+        
+        if(this.specificHiddenTreasures.isEmpty() && this.specificVisibleTreasures.isEmpty()){
+            int visibles = 0;
+            int ocultos = 0;
+            
+            int tamV = visible.size();
+            int tamO = hidden.size();
+            
+            if(nVisiblesTreasures <= tamV){
+                visibles = nVisiblesTreasures;
+            }
+            else if(tamV < nVisiblesTreasures){
+                visibles = tamV;
+            }
+            
+            if(nHiddenTreasures <= tamO){
+                ocultos = nHiddenTreasures;
+            }
+            else if(tamO < nHiddenTreasures){
+                ocultos = tamO;
+            }
+                 
+            bad = new BadConsequence("",0,visibles,ocultos);
+                        
+            
+            }else{
+        
         ArrayList<TreasureKind> tVisible = new ArrayList();
         ArrayList<TreasureKind> tHidden = new ArrayList();
         
         for(Treasure t: visible){
-            if (!tVisible.contains(t.getType()))
+            if (specificVisibleTreasures.contains(t.getType()))
                 tVisible.add(t.getType());
         }
         
         for(Treasure t: hidden){
-            if(!tHidden.contains(t.getType())) 
+            if(specificHiddenTreasures.contains(t.getType())) 
                 tHidden.add(t.getType());
         }
         
-        BadConsequence bad = new BadConsequence(this.text,0, tVisible, tHidden);
+        bad = new BadConsequence("", 0, tVisible, tHidden);
         
+        }
         return bad;
         
         
