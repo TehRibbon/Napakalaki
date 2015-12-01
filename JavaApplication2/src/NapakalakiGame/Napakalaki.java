@@ -73,36 +73,36 @@ public class Napakalaki{
       Una vez calculado el índice, se devuelve el jugador que ocupa esa posición.*/
     
     private Player nextPlayer(){
-        int indice_siguiente = 0;
-        Player nextPlayer;
-        int total_jugadores;
-        total_jugadores = this.players.size();//Obtenemos numero de jugadores
+        Player aux;
+        int posicion = 0;
+        int total_jugadores = this.players.size();//Obtenemos numero de jugadores
         
         //si no está definido el jugador actual significa que es la primera jugada
         if(currentPlayer == null){
             for(int i=0; i<1; i++)
-                indice_siguiente = (int)(Math.random()* total_jugadores);
+                posicion = (int)(Math.random()* total_jugadores);
+            
+                aux = players.get(posicion);
+                currentPlayer = aux;
             
         }
         else{ 
+            posicion = players.indexOf(currentPlayer);
+            posicion++;
             
-            int indiceJugadorActual= this.players.indexOf(this.currentPlayer);
-            
-            if ( indiceJugadorActual == total_jugadores - 1){
+            if ( posicion >= total_jugadores){
             //Si es el ultimo seleccionamos el primero
-                indice_siguiente = 0;
+                aux = players.get(0);
+                currentPlayer = aux;
             } 
             else {
                 //seleccionamos el siguiente
-                indice_siguiente = indiceJugadorActual + 1;
+                aux = players.get(posicion);
+                currentPlayer = aux;
             }
             
         }
-        
-        nextPlayer = this.players.get(indice_siguiente);
-        
-        this.currentPlayer = nextPlayer;
-        
+           
         
         return this.currentPlayer;
     
