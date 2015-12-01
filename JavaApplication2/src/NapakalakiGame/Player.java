@@ -311,7 +311,7 @@ public class Player {
     private boolean canYouGiveMeATreasure(){
         boolean solucion = false;
         
-        if(HiddenTreasures.size() > 0 || VisibleTreasures.size() >0){
+        if(HiddenTreasures.size() > 0){
             solucion = true;
         }
        return solucion;
