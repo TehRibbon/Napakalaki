@@ -237,12 +237,7 @@ public class Napakalaki{
             if(dead){
                 currentPlayer.initTreasures();
             }
-        } //else {
-          //  this.currentMonster = this.dealer.nextMonster(); //Al no poder cambiar de turno, el monstruo no cambia
-        //}
-        
-        //if(currentPlayer == null)
-        //    stateOk = true;
+        }
         
         return stateOk;
 

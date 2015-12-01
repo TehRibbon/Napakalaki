@@ -100,12 +100,12 @@ public class Player {
         if(nTreasures > 0){
             CardDealer dealer = CardDealer.getInstance();
             
-            for(int i= 1; i<= nTreasures; i++){
+            for(int i= 0; i<= nTreasures; i++){
                 
                 Treasure t = dealer.nextTreasure();
                 this.HiddenTreasures.add(t);
             }
-        }      
+        }    
     
     }
     
