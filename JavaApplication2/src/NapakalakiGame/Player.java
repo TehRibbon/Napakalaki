@@ -347,7 +347,7 @@ public class Player {
             switch(tipo){
                 case ONEHAND: //Hay que hacer una serie de comprobaciones
                     //Comprobamos si tiene 
-                    if(tipo == TreasureKind.BOTHHANDS)
+                    if(howManyVisibleTreasures(TreasureKind.BOTHHANDS) > 0)
                         resultado = false;
                     else{
                         int i=0;
@@ -358,7 +358,7 @@ public class Player {
                             }
                         }
                         
-                        if( i == 2)
+                        if( i >= 2)
                             resultado = false;
                         else
                             resultado = true;
@@ -366,22 +366,22 @@ public class Player {
                     
                     break;
                 case BOTHHANDS:
-                    if(howManyVisibleTreasures(TreasureKind.ONEHAND) > 0){
+                    if(howManyVisibleTreasures(TreasureKind.BOTHHANDS) > 0){
                         resultado = false;
                     } else {
                         int j=0;
                         //Comprobamos si tiene algun tesoro de una mano
                         for(Treasure te : this.VisibleTreasures){
-                            if(te.getType().equals(TreasureKind.BOTHHANDS)){
+                            if(te.getType().equals(TreasureKind.ONEHAND)){
                                 j++;
                             }
                         }
                         
-                        if( j == 1){
-                            resultado = false;
+                        if( j == 0){
+                            resultado = true;
                         }
                         else
-                            resultado = true;
+                            resultado = false;
                         
                         break;
                     }
@@ -408,6 +408,6 @@ public class Player {
     @Override
     public String toString(){
         
-        return this.name;
+        return this.name + "\nLevel: " + this.level + "\nPendingBad" + this.pendingBadConsequence;
     }
 }
