@@ -11,7 +11,7 @@ package NapakalakiGame;
  */
 public enum CombatResult {
     
-    WINGAME, WIN, LOSE;
+    WINGAME, WIN, LOSE, LOSEANDCONVERT;
     @Override
     public String toString(){
     String solucion = "";
@@ -22,6 +22,8 @@ public enum CombatResult {
             break;
         case LOSE : solucion = "Has perdido";
             break;
+        case LOSEANDCONVERT : solucion = "Has perdido y te conviertes a sectario.";
+                break;
         default: 
             return "Error.";
     }

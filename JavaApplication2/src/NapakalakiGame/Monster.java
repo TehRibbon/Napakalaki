@@ -15,6 +15,7 @@ public class Monster {
     private final int combatLevel;
     private BadConsequence mal_rollo;
     private Prize premio;
+    private int levelChangeAgainstCultistPlayer;
     
     /*Constructor*/
     
@@ -23,7 +24,16 @@ public class Monster {
         this.combatLevel = level;
         this.mal_rollo=bc;
         this.premio=price;
-            }
+        levelChangeAgainstCultistPlayer = 0;
+    }
+    
+    public Monster(String name, int levels, BadConsequence badConsequence, Prize p, int IC){
+        this.name = name;
+        this.combatLevel = levels;
+        this.mal_rollo = badConsequence;
+        this.premio = p;
+        this.levelChangeAgainstCultistPlayer = IC;
+    }
     public String getName(){
         return this.name;
     }
@@ -38,6 +48,11 @@ public class Monster {
     
     public Prize getPrize(){
         return this.premio;
+    }
+    
+    public int getCombatLevelAgainstCultistPlayer(){
+        int solucion = this.combatLevel + this.levelChangeAgainstCultistPlayer;
+        return solucion;
     }
     
     /*Devuelve el número de niveles ganados proporcionados por su buen rollo.*/

@@ -148,7 +148,14 @@ public class Napakalaki{
     otro caso, el jugador pierde el combate y se aplica el mal rollo correspondiente.*/
     public CombatResult developCombat(){
         CombatResult combat = currentPlayer.combat(currentMonster);
-        
+        if(combat == CombatResult.LOSEANDCONVERT){
+            Cultist cultist = dealer.nextCultist();
+            CultistPlayer nuevo = new CultistPlayer(currentPlayer,cultist);
+            int pos = players.indexOf(currentPlayer);
+            players.set(pos, nuevo);
+            currentPlayer = nuevo;
+        }
+            
         this.dealer.giveMonsterBack(this.currentMonster);
         return combat;
         
