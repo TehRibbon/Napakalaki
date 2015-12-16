@@ -5,6 +5,8 @@
  */
 package NapakalakiGame;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mario-cabesa
@@ -39,8 +41,55 @@ public class NumericBadConsequence extends BadConsequence{
     }
     
     @Override
+    public BadConsequence adjustToFitTreasureList(ArrayList<Treasure> visible, ArrayList<Treasure> hidden)
+    {
+        BadConsequence bad;
+        ArrayList<TreasureKind> auxOcultos= new ArrayList();
+        ArrayList<TreasureKind> auxVisibles  = new ArrayList(); 
+        
+        
+        //if(this.auxOcultos.isEmpty() && this.auxVisibles.isEmpty()){
+            int visibles = 0;
+            int ocultos = 0;
+            
+            int tamV = visible.size();
+            int tamO = hidden.size();
+            
+            if(nVisiblesTreasures <= tamV){
+                visibles = nVisiblesTreasures;
+            }
+            else if(tamV < nVisiblesTreasures){
+                visibles = tamV;
+            }
+            
+            if(nHiddenTreasures <= tamO){
+                ocultos = nHiddenTreasures;
+            }
+            else if(tamO < nHiddenTreasures){
+                ocultos = tamO;
+            }
+                 
+            bad = new NumericBadConsequence("",0,visibles,ocultos);
+                        
+            
+        //    }
+        return bad;
+    }
+    
+    @Override
+    public abstract boolean getDeath();
+    
+    @Override
+    public abstract boolean isEmpty();
+
+    
+    
+    @Override
     public String toString(){
         return  "\n\t>Tesoros visibles que se pierden =" + Integer.toString(nVisiblesTreasures) 
                 + "\n\t>Tesoros ocultos que se pierden =" + Integer.toString(nHiddenTreasures);
     }
+    
+
+    
 }

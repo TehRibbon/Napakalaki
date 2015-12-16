@@ -23,7 +23,7 @@ public class Player {
     private CombatResult resultadoCombate;
     private ArrayList<Treasure> HiddenTreasures = new ArrayList();
     private ArrayList<Treasure> VisibleTreasures = new ArrayList();
-    private BadConsequence pendingBadConsequence = new BadConsequence("",0,0,0);
+    private BadConsequence pendingBadConsequence = new NumericBadConsequence("",0,0,0);
     protected Player enemy;
     
     

@@ -50,6 +50,35 @@ public class SpecificBadConsequence extends BadConsequence{
         
         return empty;
     }
+    
+    @Override
+    public BadConsequence adjustToFitTreasureList(ArrayList<Treasure> visible, ArrayList<Treasure> hidden)
+    {
+        BadConsequence bad;
+        
+        //if( (!this.specificHiddenTreasures.isEmpty() ) && (!this.specificVisibleTreasures.isEmpty()) ){
+           
+        
+        ArrayList<TreasureKind> tVisible = new ArrayList();
+        ArrayList<TreasureKind> tHidden = new ArrayList();
+        
+        for(Treasure t: visible){
+            if (specificVisibleTreasures.contains(t.getType()))
+                tVisible.add(t.getType());
+        }
+        
+        for(Treasure t: hidden){
+            if(specificHiddenTreasures.contains(t.getType())) 
+                tHidden.add(t.getType());
+        }
+        
+        bad = new SpecificBadConsequence("", 0, tVisible, tHidden);
+        
+        //}
+        return bad;
+        
+        
+    }
     @Override
     public String toString(){
         return  "\n\t>Tesoros ocultos específicos que se pierden =" + specificHiddenTreasures

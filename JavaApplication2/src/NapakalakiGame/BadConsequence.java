@@ -11,7 +11,7 @@ import java.util.*;
  *
  * @author mario-cabesa
  */
-public abstract class BadConsequence  {
+public abstract class BadConsequence{
     static final int MAXTREASURES = 10;
     private String text; //lo que dice el mal rollo
     private  int levels;//niveles que se pierden
@@ -91,55 +91,7 @@ public abstract class BadConsequence  {
         nHiddenTreasures = 0
         specificVisibleTreasures = []
         specificHiddenTreasures = [ONEHAND, HELMET]*/
-    BadConsequence adjustToFitTreasureList(ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
-        BadConsequence bad;
-        
-        if(this.specificHiddenTreasures.isEmpty() && this.specificVisibleTreasures.isEmpty()){
-            int visibles = 0;
-            int ocultos = 0;
-            
-            int tamV = visible.size();
-            int tamO = hidden.size();
-            
-            if(nVisiblesTreasures <= tamV){
-                visibles = nVisiblesTreasures;
-            }
-            else if(tamV < nVisiblesTreasures){
-                visibles = tamV;
-            }
-            
-            if(nHiddenTreasures <= tamO){
-                ocultos = nHiddenTreasures;
-            }
-            else if(tamO < nHiddenTreasures){
-                ocultos = tamO;
-            }
-                 
-            bad = new BadConsequence("",0,visibles,ocultos);
-                        
-            
-            }else{
-        
-        ArrayList<TreasureKind> tVisible = new ArrayList();
-        ArrayList<TreasureKind> tHidden = new ArrayList();
-        
-        for(Treasure t: visible){
-            if (specificVisibleTreasures.contains(t.getType()))
-                tVisible.add(t.getType());
-        }
-        
-        for(Treasure t: hidden){
-            if(specificHiddenTreasures.contains(t.getType())) 
-                tHidden.add(t.getType());
-        }
-        
-        bad = new BadConsequence("", 0, tVisible, tHidden);
-        
-        }
-        return bad;
-        
-        
-    }
+    public abstract BadConsequence adjustToFitTreasureList(ArrayList<Treasure> visible, ArrayList<Treasure> hidden);
     
 
    
