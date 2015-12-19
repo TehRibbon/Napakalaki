@@ -83,7 +83,7 @@ public class Player {
     /*Devuelve el nivel de combate del jugador, que viene dado por su nivel más los
       bonus que le proporcionan los tesoros que tenga equipados, según las reglas del
       juego.*/
-    int getCombatLevel(){
+    protected int getCombatLevel(){
         int level = this.level;
         //Recorremos los tesoros para obtener el bonus
         for(Treasure t : this.HiddenTreasures){

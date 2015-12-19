@@ -312,7 +312,7 @@ public class CardDealer {
         this.initMonsterCardDeck();
         this.shuffleMonster();
         
-        this.shuffleCultists();
+        this.initCultistCardDeck();
         this.shuffleCultists();        
         
         

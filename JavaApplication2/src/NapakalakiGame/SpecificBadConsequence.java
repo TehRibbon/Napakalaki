@@ -84,4 +84,6 @@ public class SpecificBadConsequence extends BadConsequence{
         return  "\n\t>Tesoros ocultos específicos que se pierden =" + specificHiddenTreasures
                 + "\n\t>Tesoros visibles específicos que se pierden=" + specificVisibleTreasures;
     }
+
+    
 }
