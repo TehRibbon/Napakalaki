@@ -85,5 +85,20 @@ public class SpecificBadConsequence extends BadConsequence{
                 + "\n\t>Tesoros visibles específicos que se pierden=" + specificVisibleTreasures;
     }
 
+    @Override
+    public boolean getDeath() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getVisibleTreasures() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getHiddenTreasures() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 }

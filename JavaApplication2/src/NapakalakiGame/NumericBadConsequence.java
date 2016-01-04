@@ -75,12 +75,7 @@ public class NumericBadConsequence extends BadConsequence{
         //    }
         return bad;
     }
-    
-    @Override
-    public abstract boolean getDeath();
-    
-    @Override
-    public abstract boolean isEmpty();
+        
 
     
     
@@ -88,6 +83,31 @@ public class NumericBadConsequence extends BadConsequence{
     public String toString(){
         return  "\n\t>Tesoros visibles que se pierden =" + Integer.toString(nVisiblesTreasures) 
                 + "\n\t>Tesoros ocultos que se pierden =" + Integer.toString(nHiddenTreasures);
+    }
+
+    @Override
+    public boolean getDeath() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<TreasureKind> getSpecificVisibleTreasures() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<TreasureKind> getSpecificHiddenTreasures() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void substractVisibleTreasure(Treasure t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void substractHiddenTreasure(Treasure t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 

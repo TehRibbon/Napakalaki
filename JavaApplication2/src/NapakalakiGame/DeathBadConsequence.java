@@ -9,7 +9,7 @@ package NapakalakiGame;
  *
  * @author mario-cabesa
  */
-public class DeathBadConsequence extends NumericBadConsequence {
+public class DeathBadConsequence extends NumericBadConsequence{
     private boolean death; //mal rollo de tipo muerte
     public DeathBadConsequence(String text, boolean death){
         super(text,0,0,0);
@@ -29,4 +29,5 @@ public class DeathBadConsequence extends NumericBadConsequence {
         
         return empty;
     }
+
 }

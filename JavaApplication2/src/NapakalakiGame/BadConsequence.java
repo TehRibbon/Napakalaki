@@ -24,7 +24,7 @@ public abstract class BadConsequence{
         this.text = text;
         this.levels = levels;
     
-    }  
+    }
      
    
     
@@ -50,7 +50,7 @@ public abstract class BadConsequence{
     
     public abstract int getHiddenTreasures();
     
-    public abstract boolean isEmpty();
+    protected abstract boolean isEmpty();
       
     
     public abstract ArrayList<TreasureKind> getSpecificVisibleTreasures();

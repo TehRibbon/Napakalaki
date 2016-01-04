@@ -67,9 +67,6 @@ public class Player {
     }
     
     
-    /*protected int getCombatLevel(){
-        return level;
-    }*/
     /*Devuelve el nombre del jugador.*/
     public String getName(){
         return name;
