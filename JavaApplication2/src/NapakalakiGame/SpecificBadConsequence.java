@@ -56,9 +56,7 @@ public class SpecificBadConsequence extends BadConsequence{
     {
         BadConsequence bad;
         
-        //if( (!this.specificHiddenTreasures.isEmpty() ) && (!this.specificVisibleTreasures.isEmpty()) ){
-           
-        
+       
         ArrayList<TreasureKind> tVisible = new ArrayList();
         ArrayList<TreasureKind> tHidden = new ArrayList();
         
@@ -74,7 +72,7 @@ public class SpecificBadConsequence extends BadConsequence{
         
         bad = new SpecificBadConsequence("", 0, tVisible, tHidden);
         
-        //}
+        
         return bad;
         
         
