@@ -316,7 +316,7 @@ public class Player {
     }
     
     /*Asigna valor al atributo que referencia al enemigo del jugador.*/
-    protected Player getEnemy(){
+    public Player getEnemy(){
         return this.enemy;
     }
     

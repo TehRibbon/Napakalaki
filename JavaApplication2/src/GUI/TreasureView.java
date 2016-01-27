@@ -6,6 +6,7 @@
 package GUI;
 
 import NapakalakiGame.Treasure;
+import NapakalakiGame.TreasureKind;
 
 /**
  *
@@ -26,13 +27,16 @@ public class TreasureView extends javax.swing.JPanel {
     public void setTreasure(Treasure tesoro){
         //se actualiza  el atributo de referencia
         treasureModel = tesoro;
-        
+        int bonus = treasureModel.getBonus();
+        String bonusS = Integer.toString(bonus);
+        TreasureKind tipo = treasureModel.getType();
         //se actualiza la vista del tesoro
         this.nombre.setText(treasureModel.getName());
-        this.bonus.setText(treasureModel.getName());
-        this.tipo_tesoro.setText(treasureModel.getName());
+        this.bonus.setText(bonusS);
+        this.tipo_tesoro.setText(tipo.toString());
         //la siguiente instruccion hace que los cambios en la vista sean efectivos
         repaint();
+        revalidate();
     }
     /**
      * This method is called from within the constructor to initialize the form.
