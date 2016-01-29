@@ -24,7 +24,7 @@ public class Monster {
         this.combatLevel = level;
         this.mal_rollo=bc;
         this.premio=price;
-        levelChangeAgainstCultistPlayer = 0;
+        this.levelChangeAgainstCultistPlayer = 0;
     }
     
     public Monster(String name, int levels, BadConsequence badConsequence, Prize p, int IC){

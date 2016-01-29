@@ -22,11 +22,8 @@ public class BadConsequenceView extends javax.swing.JPanel {
 
     public void setBadConsequence(BadConsequence malRollo){
         this.badConsequenceModel = malRollo;
-        //variables auxiliares para String
-        int levels = badConsequenceModel.getLevels();
-        String levelsS = Integer.toString(levels);
         //instrucciones para actualizar
-        this.niveles.setText(levelsS);
+        this.niveles.setText(Integer.toString(badConsequenceModel.getLevels()));
         this.texto.setText(badConsequenceModel.getText());
         repaint();
         revalidate();

@@ -56,6 +56,9 @@ public class Player {
         return m.getCombatLevel();
     }
     
+    public BadConsequence getPendingBadConsequence(){
+        return this.pendingBadConsequence;
+    }
     
     protected boolean shouldConvert(){
         Dice dice = Dice.getInstance();

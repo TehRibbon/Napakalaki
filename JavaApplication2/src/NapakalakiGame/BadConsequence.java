@@ -98,7 +98,7 @@ public abstract class BadConsequence{
     
     
     public String toString(){
-        return  text + "\n\t>Niveles que se pierden = " + Integer.toString(levels);
+        return  text + "\n>Niveles que se pierden = " + Integer.toString(levels);
     }
     
     

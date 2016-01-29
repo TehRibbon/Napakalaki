@@ -7,6 +7,7 @@ package GUI;
 
 import NapakalakiGame.Treasure;
 import NapakalakiGame.TreasureKind;
+import java.awt.Color;
 
 /**
  *
@@ -14,7 +15,15 @@ import NapakalakiGame.TreasureKind;
  */
 public class TreasureView extends javax.swing.JPanel {
     Treasure treasureModel;
+    boolean selected = false;
     
+    public boolean isSelected(){
+        return this.selected;
+    }
+    
+    public Treasure getTreasure(){
+        return this.treasureModel;
+    }
     
     
     /**
@@ -27,13 +36,10 @@ public class TreasureView extends javax.swing.JPanel {
     public void setTreasure(Treasure tesoro){
         //se actualiza  el atributo de referencia
         treasureModel = tesoro;
-        int bonus = treasureModel.getBonus();
-        String bonusS = Integer.toString(bonus);
-        TreasureKind tipo = treasureModel.getType();
         //se actualiza la vista del tesoro
         this.nombre.setText(treasureModel.getName());
-        this.bonus.setText(bonusS);
-        this.tipo_tesoro.setText(tipo.toString());
+        this.bonus.setText(Integer.toString(treasureModel.getBonus()));
+        this.tipoTesoro.setText(treasureModel.getType().toString());
         //la siguiente instruccion hace que los cambios en la vista sean efectivos
         repaint();
         revalidate();
@@ -50,7 +56,14 @@ public class TreasureView extends javax.swing.JPanel {
         tesoro = new javax.swing.JTextField();
         nombre = new javax.swing.JTextField();
         bonus = new javax.swing.JTextField();
-        tipo_tesoro = new javax.swing.JTextField();
+        tipoTesoro = new javax.swing.JTextField();
+
+        setBackground(new java.awt.Color(180, 172, 172));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         tesoro.setText("tesoro");
         tesoro.addActionListener(new java.awt.event.ActionListener() {
@@ -68,7 +81,7 @@ public class TreasureView extends javax.swing.JPanel {
 
         bonus.setText("bonus");
 
-        tipo_tesoro.setText("tipo_tesoro");
+        tipoTesoro.setText("tipoTesoro");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -80,7 +93,7 @@ public class TreasureView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bonus, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addComponent(tipo_tesoro, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tipoTesoro, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(tesoro)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
@@ -97,7 +110,7 @@ public class TreasureView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bonus, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tipo_tesoro))
+                    .addComponent(tipoTesoro))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -110,11 +123,26 @@ public class TreasureView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nombreActionPerformed
 
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        if(selected == true)
+            selected = false;
+        else
+            selected = true;
+        
+        
+        if(selected){
+            setBackground(Color.ORANGE);
+            setOpaque(true);
+            
+        }
+        repaint();
+    }//GEN-LAST:event_formMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bonus;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField tesoro;
-    private javax.swing.JTextField tipo_tesoro;
+    private javax.swing.JTextField tipoTesoro;
     // End of variables declaration//GEN-END:variables
 }

@@ -20,11 +20,12 @@ public class Main {
         Napakalaki game = Napakalaki.getInstance();
         NapakalakiView napakalakiView = new NapakalakiView();
         Dice.createInstance(napakalakiView);
-        napakalakiView.setNapakalaki(game);
+        
         ArrayList<String> names = new ArrayList();
         PlayerNamesCapture namesCapture = new PlayerNamesCapture(napakalakiView, true);
         names = namesCapture.getNames();
         game.initGame(names);
+        napakalakiView.setNapakalakiView(game);
         napakalakiView.setVisible(true); //Esta instruccion debe ser la ultima
     }
 

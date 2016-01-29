@@ -5,31 +5,29 @@
  */
 package GUI;
 
-import NapakalakiGame.Prize;
+import NapakalakiGame.BadConsequence;
+import NapakalakiGame.Player;
 
 /**
  *
  * @author mario-cabesa
  */
-public class PrizeView extends javax.swing.JPanel {
-
-        private Prize prizeModel;
+public class PendingBadConsequenceView extends javax.swing.JPanel {
+        BadConsequence badConsequenceModel;
     /**
-     * Creates new form PrizeView
+     * Creates new form PendingBadConsequenceView
      */
-    public PrizeView() {
+    public PendingBadConsequenceView() {
         initComponents();
     }
-    
-    public void setPrize(Prize prize){
-        this.prizeModel = prize;
-        //instrucciones para actualizar
-        this.treasures.setText(Integer.toString(prizeModel.getTreasures()));
-        this.level.setText(Integer.toString(prizeModel.getLevel()));
+
+    public void setPendingBadConsequenceView(BadConsequence pendingBadConsequence){
+        this.badConsequenceModel = pendingBadConsequence;
+        this.text.setText(badConsequenceModel.getText());
+        this.levels.setText(Integer.toString(badConsequenceModel.getLevels()));
         repaint();
         revalidate();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,37 +37,37 @@ public class PrizeView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        treasures = new javax.swing.JTextField();
-        level = new javax.swing.JTextField();
+        text = new javax.swing.JTextField();
+        levels = new javax.swing.JTextField();
 
-        treasures.setText("Tesoros");
+        text.setText("text");
 
-        level.setText("Nivel");
+        levels.setText("leveles");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(treasures, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(text, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(level, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(levels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(treasures, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(level, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(text, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                    .addComponent(levels))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField level;
-    private javax.swing.JTextField treasures;
+    private javax.swing.JTextField levels;
+    private javax.swing.JTextField text;
     // End of variables declaration//GEN-END:variables
 }
