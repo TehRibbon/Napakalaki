@@ -44,10 +44,25 @@ public class NapakalakiView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         meetTheMonster.setText("Meet The Monster");
+        meetTheMonster.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                meetTheMonsterActionPerformed(evt);
+            }
+        });
 
         combat.setText("Combat");
+        combat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combatActionPerformed(evt);
+            }
+        });
 
         nextTurn.setText("Next Turn");
+        nextTurn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextTurnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,6 +104,21 @@ public class NapakalakiView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void meetTheMonsterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meetTheMonsterActionPerformed
+        napakalakiModel.getCurrentMonster();
+        setNapakalakiView(napakalakiModel);
+    }//GEN-LAST:event_meetTheMonsterActionPerformed
+
+    private void nextTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextTurnActionPerformed
+        napakalakiModel.nextTurn();
+        setNapakalakiView(napakalakiModel);
+    }//GEN-LAST:event_nextTurnActionPerformed
+
+    private void combatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combatActionPerformed
+        napakalakiModel.developCombat();
+        setNapakalakiView(napakalakiModel);
+    }//GEN-LAST:event_combatActionPerformed
 
     /**
      * @param args the command line arguments

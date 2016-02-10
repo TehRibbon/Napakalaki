@@ -79,7 +79,7 @@ public class SpecificBadConsequence extends BadConsequence{
     }
     @Override
     public String toString(){
-        return  "\n>Tesoros ocultos específicos que se pierden =" + specificHiddenTreasures
+        return  "\n\n>Tesoros ocultos específicos que se pierden =" + specificHiddenTreasures
                 + "\n>Tesoros visibles específicos que se pierden=" + specificVisibleTreasures;
     }
 
